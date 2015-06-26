@@ -1,0 +1,19 @@
+{
+  "name": "optionnelles",
+  "version": "0.1.0",
+  "author": "ATBTeam",
+  "homepage": "https://github.com/ATBTeam/optionnelles",
+  "bugs": "https://github.com/ATBTeam/optionnelles/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ATBTeam/optionnelles.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.8.8"
+  },
+  "dependencies": {
+    "laravel-elixir": "^2.0.0",
+    "bootstrap-sass": "^3.0.0"
+  }
+}
