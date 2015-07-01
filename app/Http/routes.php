@@ -10,7 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/','UserController@accueil_page');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('compte/creer','UserController@creerCompte');
+
+Route::get('compte/seConnecter','UserController@seConnecter');
+
+Route::get('compte/seDeconnecter','UserController@seDeconnecter');
+
+Route::get('compte/afficher','UserController@afficherProfil');
+
+Route::get('compte/modifier','UserController@modifierProfil');
+
+Route::get('compte/reinitialiser','UserController@reinitialiserMdp');
+
+
