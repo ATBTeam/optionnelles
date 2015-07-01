@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller{
@@ -24,22 +25,27 @@ class UserController extends Controller{
     }
 
     //Fonction pour se connecter
-    public function seConnecter(){
-        return "page pour se connecter";
+    public function seConnecter(Request $request){
+        if ($request->isMethod('post')) {
+
+            return "post";
+        }
+        return response()->view('auth/login');
     }
 
-    //Fonction pour se deconnecter
-    public function seDeconnecter(){
+    //Fonction pour se deconnecter  ==> Done
+    public function seDeconnecter(Request $request){
+        Auth::logout();
         return "page pour se deconnecter";
     }
 
     //Fonction pour afficher profil
-    public function afficherProfil(){
+    public function afficherProfil(Request $request){
         return "page pour afficher profil";
     }
 
     //Fonction pour modifier profil
-    public function modifierProfil(){
+    public function modifierProfil(Request $request){
         return "page pour modifier profil";
     }
     //Fonction pour reinitialiser mot de passe
