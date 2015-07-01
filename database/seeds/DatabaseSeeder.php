@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ));
 
         $parcours = Parcours::create(array(
-            'intitule' => 'M1 MIAGE',
+            'intitule' => 'M2 MIAGE',
             'description' => 'Master 1 Miage',
             'annee' => 1,
             'nb_opt_s1' => 10,
