@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         DB::table('ue')->delete();
         DB::table('parcours_ue')->delete();
 
+        /*
         $specialite = Specialite::create(array(
             'intitule' => 'MIAGE',
             'description' => 'Méthodes Informatiques Appliquées à la Gestion de l\'Entreprise'
@@ -44,6 +45,9 @@ class DatabaseSeeder extends Seeder
             'fin_choix_s2' => '0000-00-00 00:00:00',
             'id_specialite' => $specialite->id
         ));
+        */
+
+
 
         $this->command->info('Parfait, vérifier ta base de données');
 
