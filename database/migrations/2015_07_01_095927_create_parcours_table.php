@@ -23,9 +23,9 @@ class CreateParcoursTable extends Migration
             $table->dateTime('fin_choix_s1')->nullable();
             $table->dateTime('deb_choix_s2')->nullable();
             $table->dateTime('fin_choix_s2')->nullable();
-            $table->integer('id_specialite')->unsigned();
+            $table->integer('specialite_id')->unsigned();
 
-            $table->foreign('id_specialite')
+            $table->foreign('specialite_id')
                 ->references('id')->on('specialite')
                 ->onDelete('cascade');
 

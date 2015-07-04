@@ -13,19 +13,19 @@ class CreateChoixTable extends Migration
     public function up()
     {
         Schema::create('choix', function (Blueprint $table) {
-            $table->primary(['id_parcours', 'id_ue']);
+            $table->primary(['parcours_id', 'ue_id']);
             $table->dateTime('date_choix')->default(date("Y-m-d H:i:s"));
-            $table->integer('id_parcours')->unsigned();
-            $table->integer('id_ue')->unsigned();
-            $table->integer('id_user')->unsigned();
+            $table->integer('parcours_id')->unsigned();
+            $table->integer('ue_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
-            $table->foreign('id_parcours')
+            $table->foreign('parcours_id')
                 ->references('id')->on('parcours')
                 ->onDelete('cascade');
-            $table->foreign('id_ue')
+            $table->foreign('ue_id')
                 ->references('id')->on('ue')
                 ->onDelete('cascade');
-            $table->foreign('id_user')
+            $table->foreign('user_id')
                 ->references('id')->on('user')
                 ->onDelete('cascade');
 

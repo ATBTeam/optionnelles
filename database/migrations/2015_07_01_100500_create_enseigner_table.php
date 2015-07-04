@@ -13,14 +13,14 @@ class CreateEnseignerTable extends Migration
     public function up()
     {
         Schema::create('enseigner', function (Blueprint $table) {
-            $table->primary(['id_ue', 'id_user']);
-            $table->integer('id_ue')->unsigned();
-            $table->integer('id_user')->unsigned();
+            $table->primary(['ue_id', 'user_id']);
+            $table->integer('ue_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
-            $table->foreign('id_ue')
+            $table->foreign('ue_id')
                 ->references('id')->on('ue')
                 ->onDelete('cascade');
-            $table->foreign('id_user')
+            $table->foreign('user_id')
                 ->references('id')->on('user')
                 ->onDelete('cascade');
 
