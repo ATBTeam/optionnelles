@@ -20,9 +20,9 @@ class CreateUserTable extends Migration
             $table->string('mdp', 255);
             $table->string('login',50);
             $table->boolean('actif')->default(false);
-            $table->integer('id_profil')->unsigned();
-            $table->integer('id_groupe')->unsigned();
-            $table->integer('id_parcours')->unsigned();
+            $table->integer('id_profil')->unsigned()->nullable();
+            $table->integer('id_groupe')->unsigned()->nullable();
+            $table->integer('id_parcours')->unsigned()->nullable();
 
             $table->foreign('id_profil')
                 ->references('id')->on('profil')
