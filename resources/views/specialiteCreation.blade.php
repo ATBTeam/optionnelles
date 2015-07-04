@@ -6,7 +6,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">Créer Spécialité</div>
             <div class="panel-body">
-                {!! Form::open(['url' => 'specialite/creation']) !!}
+                {!! Form::open(['url' => 'specialite/add']) !!}
                 <div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
                     {!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'nom de la spécialité']) !!}
                     {!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
