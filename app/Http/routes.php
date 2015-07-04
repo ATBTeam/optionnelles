@@ -32,7 +32,7 @@ Route::get('specialite/creation', 'SpecialiteController@get_Create_Page');
 Route::post('specialite/creation', 'SpecialiteController@post_Create');
 
 Route::get('specialite/modifier', 'SpecialiteController@get_Update_Page');
-Route::post('specialite/modifier', 'SpecialiteController@post_Update');
+Route::post('specialite/modifier/{id}', 'SpecialiteController@post_Update');
 
 //formulaire de concact
 Route::get('contact', 'ContactController@getForm');
