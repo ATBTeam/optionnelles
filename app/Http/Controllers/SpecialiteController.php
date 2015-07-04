@@ -8,16 +8,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\SpecialiteRequest;
+use App\Specialite;
 
 class SpecialiteController extends Controller{
 
-    //Fonction pour la page d'accueil
-    public function accueil_page(){
-        return view('specialiteCreation');
-    }
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////// GET
 
     //Fonction pour page création de spécioalité
     public function get_Create_Page(){
@@ -25,21 +22,23 @@ class SpecialiteController extends Controller{
     }
 
     //Fonction pour page modifier spécialité
-    public function get_Update_Page($id){
-        return view('specialiteModification');
+    public function get_Update_Page(Specialite $specialite){
+        return response()->view('specialiteModification',['specialite'=> $specialite]);
     }
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
 
     //Fonction pour créer spécialité
-    public function post_Create(Request $request){
-        $nom = $request->input('nom');
-        //opération CRUD
+    public function post_Create(SpecialiteRequest $request){
+        $spécialite = new Specialite();
+        $spécialite->intitule = $request->input('nom');
+        $spécialite->description = $request->input('texte');
+        $spécialite->save();
         return "page de validation spécialité ajoutée";
     }
 
     //Fonction pour modifier spécialité
-    public function post_Update(Request $request){
-        $nom = $request->input('nom');
-        //$id =
+    public function post_Update(SpecialiteRequest $request){
         //opération CRUD
         return "page de validation spécialité modifiée";
     }

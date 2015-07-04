@@ -28,12 +28,12 @@ Route::get('admin/compte/modifier','UserController@admin_modifierProfil');
 Route::get('admin/compte/reinitialiser','UserController@admin_reinitialiserMdp');
 
 //gestion des spécialités : en cours
-Route::get('specialite/create', 'SpecialiteController@get_Create_Page');
-Route::post('specialite/create', 'SpecialiteController@post_Create');
+Route::get('specialite/creation', 'SpecialiteController@get_Create_Page');
+Route::post('specialite/creation', 'SpecialiteController@post_Create');
 
-Route::get('specialite/update', 'SpecialiteController@get_Update_Page');
-Route::post('specialite/update', 'SpecialiteController@post_Update');
+Route::get('specialite/modifier', 'SpecialiteController@get_Update_Page');
+Route::post('specialite/modifier', 'SpecialiteController@post_Update');
 
 //formulaire de concact
-//Route::get('contact', 'ContactController@getForm'); // à corriger
-//Route::post('contact/form', 'ContactController@postForm'); // à corriger
+Route::get('contact', 'ContactController@getForm');
+Route::post('contact/form', 'ContactController@postForm');
