@@ -144,7 +144,9 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        //ajouté par thomas
+        Collective\Html\HtmlServiceProvider::class,
+        //
 		Laracasts\Flash\FlashServiceProvider::class,
 
     ],
@@ -197,7 +199,10 @@ return [
 		'Form'		=> Illuminate\Html\FormFacade::class,
 		'Html'		=> Illuminate\Html\HtmlFacade::class,
 		'Flash'		=> Laracasts\Flash\Flash::class,
-
+        //ajouté par thomas
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        //
     ],
 
 ];
