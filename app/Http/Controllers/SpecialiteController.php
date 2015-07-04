@@ -42,10 +42,12 @@ class SpecialiteController extends Controller{
     //Fonction pour modifier spécialité
     public function post_Update(SpecialiteRequest $request, $id){
         $specialite = Specialite::findOrFail($id);
+        $old = $specialite->intitule;
         $specialite->intitule = $request->input('nom');
         $specialite->description = $request->input('texte');
         $specialite->save();
-        return "page de validation spécialité modifiée";
+        $text = "La spécialité : ".$old."=>".$request->input('nom')." à été modifiée";
+        return view("confirmation",['text'=>$text]);
     }
     //Fonction pour supprimer spécialité
     public function Delete($id){
