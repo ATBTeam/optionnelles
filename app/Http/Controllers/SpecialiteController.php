@@ -30,11 +30,13 @@ class SpecialiteController extends Controller{
 
     //Fonction pour créer spécialité
     public function post_Create(SpecialiteRequest $request){
+        //1)test pour savoir si une spé a déja le même nom
         $spécialite = new Specialite();
         $spécialite->intitule = $request->input('nom');
         $spécialite->description = $request->input('texte');
         $spécialite->save();
-        return "page de validation spécialité ajoutée";
+        $text = "La spécialité : ".$request->input('nom')." à été ajoutée";
+        return view("confirmation",['text'=>$text]);
     }
 
     //Fonction pour modifier spécialité
