@@ -51,8 +51,8 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'en',
+//changé par thomas old:'en'
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
-    'fallback_locale' => 'en',
+//changé par thomas old:'en'
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		Illuminate\Html\HtmlServiceProvider::class,
+		//Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -196,8 +196,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-		'Form'		=> Illuminate\Html\FormFacade::class,
-		'Html'		=> Illuminate\Html\HtmlFacade::class,
+		//'Form'		=> Illuminate\Html\FormFacade::class,
+		//'Html'		=> Illuminate\Html\HtmlFacade::class,
 		'Flash'		=> Laracasts\Flash\Flash::class,
         //ajouté par thomas
         'Form'      => Collective\Html\FormFacade::class,
