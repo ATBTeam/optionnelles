@@ -17,12 +17,12 @@ class CreateParcoursTable extends Migration
             $table->string('intitule', 50);
             $table->string('description', 500);
             $table->tinyInteger('annee');
-            $table->tinyInteger('nb_opt_s1');
-            $table->tinyInteger('nb_opt_s2');
-            $table->dateTime('deb_choix_s1');
-            $table->dateTime('fin_choix_s1');
-            $table->dateTime('deb_choix_s2');
-            $table->dateTime('fin_choix_s2');
+            $table->tinyInteger('nb_opt_s1')->nullable();
+            $table->tinyInteger('nb_opt_s2')->nullable();
+            $table->dateTime('deb_choix_s1')->nullable();
+            $table->dateTime('fin_choix_s1')->nullable();
+            $table->dateTime('deb_choix_s2')->nullable();
+            $table->dateTime('fin_choix_s2')->nullable();
             $table->integer('id_specialite')->unsigned();
 
             $table->foreign('id_specialite')

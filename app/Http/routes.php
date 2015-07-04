@@ -32,5 +32,4 @@ Route::get('specialite/update', 'SpecialiteController@get_Update_Page');
 Route::post('specialite/update', 'SpecialiteController@post_Update');
 
 //formulaire de concact
-Route::get('contact', 'ContactController@getForm');
-Route::post('contact/form', 'ContactController@postForm');
+Route::controller('contact', 'ContactController');
