@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/','UserController@accueil_page');
+Route::get('/','SpecialiteController@accueil_page');
 
 Route::get('compte/creer','UserController@creerCompte');
 
@@ -24,4 +24,12 @@ Route::get('compte/modifier','UserController@modifierProfil');
 
 Route::get('compte/reinitialiser','UserController@reinitialiserMdp');
 
+//gestion des spécialités : en cours
+Route::get('specialite/create', 'SpecialiteController@get_Create_Page');
+Route::post('specialite/create', 'SpecialiteController@post_Create');
 
+Route::get('specialite/update', 'SpecialiteController@get_Update_Page');
+Route::post('specialite/update', 'SpecialiteController@post_Update');
+
+//formulaire de concact
+Route::controller('contact', 'ContactController');
