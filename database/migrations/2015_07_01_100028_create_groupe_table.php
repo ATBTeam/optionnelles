@@ -15,9 +15,9 @@ class CreateGroupeTable extends Migration
         Schema::create('groupe', function (Blueprint $table) {
             $table->increments('id');
             $table->string('intitule', 50);
-            $table->integer('id_parcours')->unsigned();
+            $table->integer('parcours_id')->unsigned();
 
-            $table->foreign('id_parcours')
+            $table->foreign('parcours_id')
                 ->references('id')->on('parcours')
                 ->onDelete('cascade');
 

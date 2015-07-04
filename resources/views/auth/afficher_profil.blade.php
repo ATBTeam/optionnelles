@@ -9,6 +9,7 @@
     <p>Email : {{ $user->mail }}</p>
     <p>Login : {{ $user->login }}</p>
     <p>Mot de passe : {{ $user->mdp }}</p>
-    <p>Parcours : </p>
+    <p>Parcours : {{ $user->parcours->intitule }}</p>
+    <p>Profil : {{ $user->profil->intitule }}</p>
 </body>
 </html>

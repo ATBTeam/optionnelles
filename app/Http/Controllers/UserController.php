@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Profil;
+use App\Parcours;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +54,9 @@ class UserController extends Controller{
         $user->login =  $request->input('login');
         $user->mdp = $request->input('mdp1');
         $user->actif = false;
-        $user->id_parcours = $request->input('parcours');
+        $user->parcours_id = $request->input('parcours');
+        $profil = Profil::where('intitule', 'étudiant')->get()->first();
+        $user->profil_id = $profil->id;
         $user->save();
         return redirect('compte/seConnecter');
     }
@@ -87,7 +91,6 @@ class UserController extends Controller{
         if (Auth::check())
         {
             $user = Auth::user();
-            return $user->parcours->id;
             return response()->view('auth/afficher_profil', ['user'=> $user]);
         }
     }

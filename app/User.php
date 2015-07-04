@@ -20,11 +20,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $fillable = ['prenom', 'nom', 'mail', 'mdp', 'login'];
 
-
     protected $hidden = ['mdp', 'remember_token'];
 
     public function choixes() {
-        return $this->hasMany('Choix'); // this matches the Eloquent model
+        return $this->hasMany('App\Choix'); // this matches the Eloquent model
     }
 
     public function profil()

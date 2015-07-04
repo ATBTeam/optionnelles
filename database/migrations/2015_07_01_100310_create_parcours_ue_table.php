@@ -13,17 +13,17 @@ class CreateParcoursUeTable extends Migration
     public function up()
     {
         Schema::create('parcours_ue', function (Blueprint $table) {
-            $table->primary(['id_parcours', 'id_ue']);
+            $table->primary(['parcours_id', 'ue_id']);
             $table->tinyInteger('nbmin');
             $table->tinyInteger('nbmax');
             $table->boolean('est_operationel');
-            $table->integer('id_parcours')->unsigned();
-            $table->integer('id_ue')->unsigned();
+            $table->integer('parcours_id')->unsigned();
+            $table->integer('ue_id')->unsigned();
 
-            $table->foreign('id_parcours')
+            $table->foreign('parcours_id')
                 ->references('id')->on('parcours')
                 ->onDelete('cascade');
-            $table->foreign('id_ue')
+            $table->foreign('ue_id')
                 ->references('id')->on('ue')
                 ->onDelete('cascade');
 
