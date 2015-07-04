@@ -11,25 +11,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SpecialiteRequest;
 use App\Specialite;
 
-class SpecialiteController extends Controller{
+class ParcoursController extends Controller{
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////// GET
 
     //Fonction pour page création de spécioalité
     public function get_Create_Page(){
-        return view('specialiteCreation');
+        return view('ParcoursCreation');
     }
 
     //Fonction pour page modifier spécialité
     public function get_Update_Page(Specialite $specialite){
         return response()->view('specialiteModification',['specialite'=> $specialite]);
-    }
-
-    //Fonction pour page liste spécialité
-    public function get_List_Page(){
-        $specialites = Specialite::all();
-        return response()->view('specialiteList',['specialites'=> $specialites]);
     }
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
