@@ -53,8 +53,9 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => ['address' => null, 'name' => null],
+    //Ajout thomas envoi de mail à modifier en fct hébergeur et @
+    'from' => ['address' => 'moi@free.fr', 'name' => 'Administrateur'],
+    //'from' => ['address' => null, 'name' => null],
 
     /*
     |--------------------------------------------------------------------------
@@ -120,5 +121,10 @@ return [
     */
 
     'pretend' => false,
+
+
+
+
+
 
 ];

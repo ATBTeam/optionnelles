@@ -15,7 +15,7 @@ class ContactController extends Controller {
     {
         Mail::send('emails.contact', $request->all(), function($message)
         {
-            $message->to('monadresse@free.fr')->subject('Contact'); //modifier addresse
+            $message->to('monadresse@free.fr')->subject('Contact'); //modifier addresse attention erreur ->to
         });
 
         return view('confirm');
