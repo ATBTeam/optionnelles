@@ -33,7 +33,7 @@ Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserControl
 Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
 Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
-//Gérer des utilisateurs => en cours
+//Gérer des utilisateurs => Done
 Route::get('admin/user/show',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
 Route::get('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_get']);
 Route::post('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_post']);
