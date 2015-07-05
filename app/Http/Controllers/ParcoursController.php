@@ -61,7 +61,6 @@ class ParcoursController extends Controller{
     public function post_Update(ParcoursRequest $request, $id){
         $parcours = Parcours::findOrFail($id);
         $specialite = Specialite::findOrFail($request->input('specialite'));
-        $parcours = new Parcours();
         $parcours->intitule = $request->input('intitule');
         $parcours->description = $request->input('description');
         $parcours->annee = $request->input('annee');
