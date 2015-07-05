@@ -1,51 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
-@if (isset($actif))
-    <div class="alert alert-danger">
-        <ul>
-            <li>Votre compte n'est pas encore activé !</li>
-        </ul>
+@extends('template')
+
+@section('contenu')
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Se connecter
+                @if (isset($actif))
+                    <div style="color:red;">Votre compte n'est pas encore activé !</div>
+                @endif
+                {!! Form::open(['url' => 'compte/login']) !!}
+            </div>
+            <div class="panel-body">
+                <div class="form-group {!! $errors->has('login') ? 'has-error' : '' !!}">
+                    Login :
+                    {!! Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'votre login']) !!}
+                    {!! $errors->first('login', '<small class="help-block">:message</small>') !!}
+                </div>
+                <div class="form-group {!! $errors->has('mdp') ? 'has-error' : '' !!}">
+                   Mot de passe:
+                    {!! Form::password('mdp', null, ['class' => 'form-control', 'placeholder' => "votre mot de passe"]) !!}
+                    {!! $errors->first('mdp', '<small class="help-block">:message</small>') !!}
+                </div>
+                {!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
-@endif
-
-@if (count($errors) > 0)
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-<!-- resources/views/auth/login.blade.php -->
-
-<form method="POST" action="login">
-    {!! csrf_field() !!}
-
-    <div>
-        Login
-        <input type="text" name="login" value="{{ old('login') }}">
-        @if ($errors->has('login')) <p>{{ $errors->first('login') }}</p> @endif
-    </div>
-
-    <div>
-        Mot de passe
-        <input type="password" name="mdp">
-        @if ($errors->has('mdp')) <p>{{ $errors->first('mdp') }}</p> @endif
-    </div>
-
-    <div>
-        <input type="checkbox" name="remember"> Remember Me
-    </div>
-
-    <div>
-        <button type="submit">Se connecter</button>
-    </div>
-</form>
-
-</body>
-</html>
+@stop
