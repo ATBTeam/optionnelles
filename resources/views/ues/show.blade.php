@@ -6,5 +6,6 @@
     <article>
         {!! $ue->description !!}
         {!! $ue->semestre !!}
+        {!! $ue->enseignants !!}
     </article>
 @stop
