@@ -10,7 +10,7 @@ class Ue extends Model
     protected $fillable = ['intitule', 'description', 'semestre'];
 
     public function parcours_ues() {
-        return $this->hasMany('Parcours_UE'); // this matches the Eloquent model
+        return $this->hasMany('Parcours_ue'); // this matches the Eloquent model
     }
 
     public function enseigners() {

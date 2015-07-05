@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Choix extends Model
 {
     protected $table = 'choix';
-    protected $fillable = ['id_user', 'id_ue', 'id_parcours', 'date_choix'];
+    protected $fillable = ['user_id', 'ue_id', 'parcours_id', 'date_choix'];
 
     public function user()
     {

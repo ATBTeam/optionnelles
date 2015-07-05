@@ -12,8 +12,8 @@
 Route::get('/','UserController@accueil_page');
 
 // Gérer des comptes des étudiants ==> Done
-Route::get('compte/add','UserController@add_user_get');
-Route::post('compte/add','UserController@add_user_post');
+Route::get('compte/add','UserController@register_get');
+Route::post('compte/add','UserController@register_post');
 Route::get('compte/login','UserController@login_get');
 Route::post('compte/login','UserController@login_post');
 Route::get('compte/logout','UserController@logout');
@@ -23,8 +23,8 @@ Route::post('compte/update',['middleware' => 'auth', 'uses' => 'UserController@u
 Route::get('compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des comptes des autres (administrateur, professeur, secrétariat) => en cours
-Route::get('admin/compte/add','UserController@admin_add_user_get');
-Route::post('admin/compte/add','UserController@admin_add_user_post');
+Route::get('admin/compte/add','UserController@admin_register_get');
+Route::post('admin/compte/add','UserController@admin_register_post');
 Route::get('admin/compte/login','UserController@login_get');
 Route::post('admin/compte/login','UserController@login_post');
 Route::get('admin/compte/logout','UserController@logout');
@@ -33,6 +33,14 @@ Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserControl
 Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
 Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
+//Gérer des utilisateurs
+Route::get('admin/user/show',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
+Route::get('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_get']);
+Route::post('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_post']);
+Route::get('admin/user/delete/{id}',['middleware' => 'auth', 'uses' => 'UserController@delete_user']);
+Route::get('admin/user/update/{id}',['middleware' => 'auth', 'uses' => 'UserController@update_user_get']);
+Route::post('admin/user/update/{id}',['middleware' => 'auth', 'uses' => 'UserController@update_user_post']);
+Route::get('admin/user/active/{id}',['middleware' => 'auth', 'uses' => 'UserController@active_user']);
 //Gérer des profils => Done
 Route::get('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilController@add_profil_get']);
 Route::post('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilController@add_profil_post']);

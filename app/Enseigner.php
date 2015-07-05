@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Enseigner extends Model
 {
     protected $table = 'enseigner';
-    protected $fillable = ['id_ue', 'id_user'];
+    protected $fillable = ['ue_id', 'user_id'];
 
     public function ue()
     {

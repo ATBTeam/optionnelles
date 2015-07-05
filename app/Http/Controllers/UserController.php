@@ -8,6 +8,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Groupe;
+use App\Ue;
 use App\User;
 use App\Profil;
 use App\Parcours;
@@ -30,7 +32,7 @@ class UserController extends Controller{
 
     //Etudiant
     //Fonction pour creer un compte ==> Done
-    public function add_user_get(){
+    public function register_get(){
         try{
             $parcours = DB::table('parcours')->get();
         }catch (Exception $e){
@@ -38,7 +40,7 @@ class UserController extends Controller{
         }
         return response()->view('auth/register', ['parcours' => $parcours]);
     }
-    public function add_user_post(Request $request){
+    public function register_post(Request $request){
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
@@ -176,7 +178,7 @@ class UserController extends Controller{
     //Autres : Professeur, administrateur, secrétariat
     //Fonction pour creer un compte
     //Fonction pour creer un compte ==> Done
-    public function admin_add_user_get(){
+    public function admin_register_get(){
         try{
             $profils = DB::table('profil')
                 ->whereNotIn('intitule', ['étudiant', 'administrateur'])
@@ -186,7 +188,7 @@ class UserController extends Controller{
         }
         return response()->view('auth/admin_register', ['profils' => $profils]);
     }
-    public function admin_add_user_post(Request $request){
+    public function admin_register_post(Request $request){
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
@@ -217,5 +219,98 @@ class UserController extends Controller{
             $user = Auth::user();
             return response()->view('auth/admin_show_compte', ['user'=> $user]);
         }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Fonction pour afficher users ==> Done
+    public function show_all_user(){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $users = User::all();
+            return response()->view('auth/show_all_user', ['users' => $users]);
+        }
+        return "Vous êtes pas administrateur";
+    }
+
+    //Fonction pour ajouter un nouveau utilisateur ==> Done
+    public function add_user_get(){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $parcours = Parcours::all();
+            $profils = Profil::all();
+            $groupes = Groupe::all();
+            //$ues = Ue::all();
+            return response()->view('auth/add_user',
+                [
+                    'parcours'=>$parcours,
+                    'profils'=>$profils,
+                    'groupes'=>$groupes
+                ]);
+        }
+        return "Vous êtes pas administrateur";
+    }
+    public function add_user_post(Request $request){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $this->validate($request, [
+                'nom' => 'required',
+                'prenom' => 'required',
+                'mail' => 'required|unique:user',
+                'login' => 'required|unique:user|min:8',
+                'mdp1' => 'required|min:8|same:mdp2',
+                'mdp2' => 'required|min:8',
+                'profil' => 'exists:profil,id'
+            ]);
+
+            $user = new User;
+            $user->nom = $request->input('nom');
+            $user->prenom = $request->input('prenom');
+            $user->mail = $request->input('mail');
+            $user->login =  $request->input('login');
+            $user->mdp = $request->input('mdp1');
+            if($request->input('actif')==1)
+                $user->actif = $request->input('actif');
+            if($request->input('parcours') != 0)
+                $user->parcours_id = $request->input('parcours');
+            if($request->input('groupe') != 0){
+                $user->groupe_id = $request->input('groupe');
+                $user->parcours_id = Groupe::find($request->input('groupe'))->parcours->id;
+            }
+            if($request->input('profil') != 0)
+                $user->profil_id = $request->input('profil');
+            $user->save();
+            return redirect('admin/user/show');
+        }
+        return "Vous êtes pas administrateur";
+    }
+
+    //Fonction pour supprimer un user => Done
+    public function delete_user($id){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $user = User::find($id);
+            $user->delete();
+            return redirect('admin/user/show');
+        }
+        return "Vous êtes pas administrateur";
+    }
+
+    //Fonction pour activer un user et lui envoyer une notification par mail => Done
+    public function active_user($id){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $user = User::find($id);
+            if($user->actif==0)
+                $user->actif = 1;
+            else $user->actif = 0;
+            $user->save();
+            //Enovyer une notification par mail au utilisateur
+
+
+            return redirect('admin/user/show');
+        }
+        return "Vous êtes pas administrateur";
     }
 }
