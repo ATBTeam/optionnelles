@@ -63,6 +63,10 @@ Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et test
 Route::post('specialite/list/update', 'SpecialiteController@post_Update_Page'); // à tester
 Route::post('specialite/update/{id}', 'SpecialiteController@post_Update'); // à tester
 
+Route::post('specialite/list/delete', 'SpecialiteController@post_Delete_Page'); // OK et testé
+Route::post('specialite/deleteCancel', 'SpecialiteController@post_DeleteCancel'); // OK et testé
+Route::post('specialite/deleteConfirm/{id}', 'SpecialiteController@post_DeleteConfirm'); // OK et testé
+
 Route::get('specialite/list', 'SpecialiteController@get_List_Page'); // à développer
 
 //formulaire de concact : en cours => à parametrer @mail et à tester
@@ -76,9 +80,9 @@ Route::post('parcours/add', 'ParcoursController@post_Create');// OK et testé
 Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// OK et testé
 Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// OK et testé
 
-Route::post('parcours/list/delete', 'ParcoursController@post_Delete_Page');// à développer
-Route::post('parcours/deleteCancel', 'ParcoursController@post_DeleteCancel');// à développer
-Route::post('parcours/deleteConfirm/{id}', 'ParcoursController@post_DeleteConfirm');// à développer
+Route::post('parcours/list/delete', 'ParcoursController@post_Delete_Page'); // OK et testé
+Route::post('parcours/deleteCancel', 'ParcoursController@post_DeleteCancel'); // OK et testé
+Route::post('parcours/deleteConfirm/{id}', 'ParcoursController@post_DeleteConfirm'); // OK et testé
 
 Route::get('parcours/list', 'ParcoursController@get_List_Page');// OK et testé
 

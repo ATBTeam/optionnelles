@@ -30,7 +30,7 @@
                 {!! Form::open(['url' => 'parcours/list/delete']) !!}
                 {!! Form::submit('Supprimer', ['class' => 'btn btn-info pull-right']) !!}
                 @if (isset($parcours))
-                <input type="hidden" name="id_parcours" id="id_parcours" value="{{$parcours[0]->id}}">
+                    <input type="hidden" name="id_parcours" id="id_parcours" value="{{$parcours[0]->id}}">
                 @endif
                 {!! Form::close() !!}
             </div>
