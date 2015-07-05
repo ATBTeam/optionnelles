@@ -30,7 +30,7 @@ class UserController extends Controller{
 
     //Etudiant
     //Fonction pour creer un compte ==> Done
-    public function creerCompte_get(){
+    public function add_user_get(){
         try{
             $parcours = DB::table('parcours')->get();
         }catch (Exception $e){
@@ -64,10 +64,10 @@ class UserController extends Controller{
     }
 
     //Fonction pour se connecter ==> Done
-    public function seConnecter_get(){
+    public function login_get(){
         return response()->view('auth/login');
     }
-    public function seConnecter_post(Request $request){
+    public function login_post(Request $request){
         $this->validate($request, [
             'login' => 'required|exists:user,login|min:8',
             'mdp' => 'required|min:8|exists:user,mdp'
@@ -83,29 +83,29 @@ class UserController extends Controller{
     }
 
     //Fonction pour se deconnecter  ==> Done
-    public function seDeconnecter(){
+    public function logout(){
         Auth::logout();
         return "page pour se deconnecter";
     }
 
     //Fonction pour afficher profil ==> Done
-    public function afficherProfil(){
+    public function show_compte(){
         if (Auth::check())
         {
             $user = Auth::user();
-            return response()->view('auth/afficher_profil', ['user'=> $user]);
+            return response()->view('auth/show_compte', ['user'=> $user]);
         }
     }
 
     //Fonction pour modifier profil ==> Done
-    public function modifierProfil_get(){
+    public function update_compte_get(){
         if (Auth::check())
         {
             $user = Auth::user();
-            return response()->view('auth/modifier_profil', ['user'=> $user]);
+            return response()->view('auth/update_compte', ['user'=> $user]);
         }
     }
-    public function modifierProfil_post(Request $request){
+    public function update_compte_post(Request $request){
         $erreurs = new Collection();
         $this->validate($request, [
             'nom' => 'required',
@@ -148,7 +148,7 @@ class UserController extends Controller{
         $user->mdp = $request->input('mdp2');
 
         if(count($erreurs) > 0){
-            return response()->view('auth/modifier_profil', ['user'=> $user, 'erreurs'=>$erreurs]);
+            return response()->view('auth/update_compte', ['user'=> $user, 'erreurs'=>$erreurs]);
         }
 
         $user->save();
@@ -156,7 +156,7 @@ class UserController extends Controller{
     }
 
     //Fonction pour reinitialiser mot de passe
-    public function reinitialiserMdp(){
+    public function reinitialyze_password_get(){
         return Specialite::find(1);
         return "page pour reinitialiser mot de passe";
     }
