@@ -22,8 +22,8 @@ class SpecialiteRequest extends Request
     public function rules()
     {
         return [
-            'nom' => 'required|min:1|max:20|alpha',
-            'texte' => 'required|max:250'
+            'nom' => 'required|min:1|max:50',
+            'texte' => 'required|max:500'
             //
         ];
     }
