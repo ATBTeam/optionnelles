@@ -23,7 +23,7 @@
 @endif
 <!-- resources/views/auth/login.blade.php -->
 
-<form method="POST" action="seConnecter">
+<form method="POST" action="login">
     {!! csrf_field() !!}
 
     <div>

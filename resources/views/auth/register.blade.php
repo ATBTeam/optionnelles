@@ -7,7 +7,7 @@
 
 <!-- resources/views/auth/register.blade.php -->
 
-<form method="POST" action="creer">
+<form method="POST" action="add">
     {!! csrf_field() !!}
 
     @if (count($errors) > 0)
