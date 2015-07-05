@@ -52,7 +52,7 @@ Route::get('admin/groupe/show',['middleware' => 'auth', 'uses' => 'GroupeControl
 Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
 Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et testé
 
-Route::post('specialite/list/update', 'SpecialiteController@get_Update_Page'); // à tester
+Route::post('specialite/list/update', 'SpecialiteController@post_Update_Page'); // à tester
 Route::post('specialite/update/{id}', 'SpecialiteController@post_Update'); // à tester
 
 Route::get('specialite/list', 'SpecialiteController@get_List_Page'); // à développer
@@ -65,7 +65,7 @@ Route::post('contact/form', 'ContactController@postForm');
 Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // à développer
 Route::post('parcours/add', 'ParcoursController@post_Create');// à développer
 
-Route::get('parcours/update', 'ParcoursController@get_Update_Page');// à développer
+Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// à développer
 Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// à développer
 
-Route::get('parcours/list', 'ParcoursController@get_Update_Page');// à développer
+Route::get('parcours/list', 'ParcoursController@get_List_Page');// à développer

@@ -8,7 +8,14 @@
             <div class="panel-body">
                 {!! Form::open(['url' => 'specialite/list/update']) !!}
                 <div>
-                    {!! Form::select('id', $table, Input::old('id'), array('size' => $table->count(), null)) !!}
+                    <select name="specialite" size={{$specialites->count()}}>
+                        @if (isset($specialites))
+                            @foreach ($specialites as $parc)
+                                    <option value="{{ $parc->id }}">{{ $parc->intitule }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                    @if ($errors->has('$specialites')) <p>{{ $errors->first('$specialites') }}</p> @endif
                 </div>
                 {!! Form::submit('Modifier', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
