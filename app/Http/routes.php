@@ -77,7 +77,6 @@ Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// à
 Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// à développer
 
 Route::get('parcours/list', 'ParcoursController@get_List_Page');// à développer
-Route::get('parcours/list', 'ParcoursController@get_Update_Page');// à développer
 
 // Gestion des UEs : TODO (Florian, work in progress)
 Route::get('ue', 'UesController@index');
