@@ -50,12 +50,12 @@
                 </div>
                 <div class="form-group {!! $errors->has('deb_choix_s1') ? 'has-error' : '' !!}">
                     Date d'ouverture des choix :
-                    {!! Form::input('datetime','deb_choix_s1', Helpers::ConvertDateString($parcours->deb_choix_s1)) !!}
+                    {!! Form::input('datetime-local','deb_choix_s1', Helpers::ConvertDateString($parcours->deb_choix_s1)) !!}
                     {!! $errors->first('deb_choix_s1', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('fin_choix_s1') ? 'has-error' : '' !!}">
                     Date de fermeture des choix :
-                    {!! Form::input('datetime','fin_choix_s1', Helpers::ConvertDateString($parcours->fin_choix_s1) ) !!}
+                    {!! Form::input('datetime-local','fin_choix_s1', Helpers::ConvertDateString($parcours->fin_choix_s1) ) !!}
                     {!! $errors->first('fin_choix_s1', '<small class="help-block">:message</small>') !!}
                 </div>
             </div>
@@ -68,12 +68,12 @@
                 </div>
                 <div class="form-group {!! $errors->has('deb_choix_s2') ? 'has-error' : '' !!}">
                     Date d'ouverture des choix :
-                    {!! Form::input('datetime','deb_choix_s2',Helpers::ConvertDateString($parcours->deb_choix_s2)) !!}
+                    {!! Form::input('datetime-local','deb_choix_s2',Helpers::ConvertDateString($parcours->deb_choix_s2)) !!}
                     {!! $errors->first('deb_choix_s2', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('fin_choix_s2') ? 'has-error' : '' !!}">
                     Date de fermeture des choix :
-                    {!! Form::input('datetime','fin_choix_s2', Helpers::ConvertDateString($parcours->fin_choix_s2)) !!}
+                    {!! Form::input('datetime-local','fin_choix_s2', Helpers::ConvertDateString($parcours->fin_choix_s2)) !!}
                     {!! $errors->first('fin_choix_s2', '<small class="help-block">:message</small>') !!}
                 </div>
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
