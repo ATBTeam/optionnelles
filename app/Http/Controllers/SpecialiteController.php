@@ -22,14 +22,17 @@ class SpecialiteController extends Controller{
     }
 
     //Fonction pour page modifier spécialité
-    public function get_Update_Page(Specialite $specialite){
+    public function get_Update_Page(Request $request){
+        $specialite = Specialite::findOrFail($request->input('id'));
         return response()->view('specialiteModification',['specialite'=> $specialite]);
     }
 
     //Fonction pour page liste spécialité
     public function get_List_Page(){
         $specialites = Specialite::all();
-        return response()->view('specialiteList',['specialites'=> $specialites]);
+        $table = Specialite::lists('intitule','id');
+
+        return response()->view('specialiteList',['table'=> $table]);
     }
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
@@ -57,7 +60,7 @@ class SpecialiteController extends Controller{
     }
     //Fonction pour supprimer spécialité
     public function Delete($id){
-        //opération CRUD
+        Specialite::destroy($id);
         return "page de validation spécialité supprimée";
     }
 
