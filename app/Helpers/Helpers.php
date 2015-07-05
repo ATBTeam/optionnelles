@@ -8,12 +8,11 @@
 
 namespace App\Helpers;
 
-
 class Helpers {
 
     public static function ConvertDateString($dateString)
     {
-        $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
+        $myDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
         $newDateString = $myDateTime->format('d/m/Y H:i:s');
         return $newDateString;
     }
