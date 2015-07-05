@@ -70,13 +70,17 @@ Route::get('contact', 'ContactController@getForm');
 Route::post('contact/form', 'ContactController@postForm');
 
 //gestion des parcours : en cours à développer
-Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // à développer
-Route::post('parcours/add', 'ParcoursController@post_Create');// à développer
+Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // OK et testé
+Route::post('parcours/add', 'ParcoursController@post_Create');// OK et testé
 
-Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// à développer
-Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// à développer
+Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// OK et testé
+Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// OK et testé
 
-Route::get('parcours/list', 'ParcoursController@get_List_Page');// à développer
+Route::post('parcours/list/delete', 'ParcoursController@post_Delete_Page');// à développer
+Route::post('parcours/deleteCancel', 'ParcoursController@post_DeleteCancel');// à développer
+Route::post('parcours/deleteConfirm/{id}', 'ParcoursController@post_DeleteConfirm');// à développer
+
+Route::get('parcours/list', 'ParcoursController@get_List_Page');// OK et testé
 
 // Gestion des UEs : TODO (Florian, work in progress)
 Route::get('ue', 'UesController@index');
