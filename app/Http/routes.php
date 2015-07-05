@@ -23,12 +23,16 @@ Route::post('compte/update',['middleware' => 'auth', 'uses' => 'UserController@u
 Route::get('compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des comptes des autres (administrateur, professeur, secrétariat) => en cours
-Route::get('admin/compte/add','UserController@admin_creerCompte');
-Route::get('admin/compte/login','UserController@admin_seConnecter');
-Route::get('admin/compte/logout','UserController@admin_seDeconnecter');
-Route::get('admin/compte/show','UserController@admin_afficherProfil');
-Route::get('admin/compte/update','UserController@admin_modifierProfil');
-Route::get('admin/compte/reinitialyze‏','UserController@admin_reinitialiserMdp');
+Route::get('admin/compte/add','UserController@admin_add_user_get');
+Route::post('admin/compte/add','UserController@admin_add_user_post');
+Route::get('admin/compte/login','UserController@login_get');
+Route::post('admin/compte/login','UserController@login_post');
+Route::get('admin/compte/logout','UserController@logout');
+Route::get('admin/compte/show',['middleware' => 'auth', 'uses' => 'UserController@admin_show_compte']);
+Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
+Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
+Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
+Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des profils => Done
 Route::get('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilController@add_profil_get']);
 Route::post('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilController@add_profil_post']);

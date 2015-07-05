@@ -38,7 +38,7 @@ class UserController extends Controller{
         }
         return response()->view('auth/register', ['parcours' => $parcours]);
     }
-    public function creerCompte_post(Request $request){
+    public function add_user_post(Request $request){
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
@@ -76,7 +76,12 @@ class UserController extends Controller{
         $user = User::where('login', $request->input('login'))->get()->first();
         if ($user->actif == 1){
             Auth::login($user);
-            return redirect('/');
+            switch($user->profil->intitule){
+                case 'administrateur': return "Page acceuil pour un administrateur";
+                case 'professeur': return "Page acceuil pour un professeur";
+                case 'secrétariat': return "Page acceuil pour un secrétariat";
+                case 'étudiant': return "Page acceuil pour un étudiant";
+            }
         }else{
             return response()->view('auth/login', ['actif'=> $user->actif]);
         }
@@ -152,7 +157,9 @@ class UserController extends Controller{
         }
 
         $user->save();
-        return redirect('compte/show');
+        if ($user->profil->intitule != "étudiant")
+            return redirect('admin/compte/show');
+        else return redirect('compte/show');
     }
 
     //Fonction pour reinitialiser mot de passe
@@ -161,41 +168,54 @@ class UserController extends Controller{
         return "page pour reinitialiser mot de passe";
     }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     //Autres : Professeur, administrateur, secrétariat
     //Fonction pour creer un compte
-    public function admin_creerCompte(Request $request){
-        if ($request->isMethod('post')) {
-            return "post admin";
+    //Fonction pour creer un compte ==> Done
+    public function admin_add_user_get(){
+        try{
+            $profils = DB::table('profil')
+                ->whereNotIn('intitule', ['étudiant', 'administrateur'])
+                ->get();
+        }catch (Exception $e){
+            return "Erreur !!";
         }
-        return response()->view('auth/admin_register');
+        return response()->view('auth/admin_register', ['profils' => $profils]);
+    }
+    public function admin_add_user_post(Request $request){
+        $this->validate($request, [
+            'nom' => 'required',
+            'prenom' => 'required',
+            'mail' => 'required|unique:user',
+            'login' => 'required|unique:user|min:8',
+            'mdp1' => 'required|min:8|same:mdp2',
+            'mdp2' => 'required|min:8',
+            'profil' => 'exists:profil,id'
+        ]);
+
+        $user = new User;
+        $user->nom = $request->input('nom');
+        $user->prenom = $request->input('prenom');
+        $user->mail = $request->input('mail');
+        $user->login =  $request->input('login');
+        $user->mdp = $request->input('mdp1');
+        $user->actif = false;
+        $user->parcours_id = $request->input('parcours');
+        $user->profil_id = $request->input('profil');
+        $user->save();
+        return redirect('compte/login');
     }
 
-    //Fonction pour se connecter ==>
-    public function admin_seConnecter(Request $request){
-        if ($request->isMethod('post')) {
-            return "post";
+    //Fonction pour afficher compte ==> Done
+    public function admin_show_compte(){
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            return response()->view('auth/admin_show_compte', ['user'=> $user]);
         }
-        return response()->view('auth/admin_login');
     }
-
-    //Fonction pour se deconnecter  ==> Done
-    public function admin_seDeconnecter(Request $request){
-        Auth::logout();
-        return "page pour se deconnecter amdin";
-    }
-
-    //Fonction pour afficher profil
-    public function admin_afficherProfil(Request $request){
-        return "page pour afficher profil amdin";
-    }
-
-    //Fonction pour modifier profil
-    public function admin_modifierProfil(Request $request){
-        return "page pour modifier profil admin";
-    }
-    //Fonction pour reinitialiser mot de passe
-    public function admin_reinitialiserMdp(){
-        return "page pour reinitialiser mot de passe admin";
-    }
-
 }
