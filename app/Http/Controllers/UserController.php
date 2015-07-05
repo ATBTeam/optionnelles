@@ -304,44 +304,97 @@ class UserController extends Controller{
             $profils = Profil::all();
             $groupes = Groupe::all();
             $ues = Ue::all();
+            $user = User::find($id);
             return response()->view('auth/update_user',
                 [
                     'parcours'=>$parcours,
                     'profils'=>$profils,
                     'groupes'=>$groupes,
-                    'ues'=>$ues
+                    'ues'=>$ues,
+                    'user'=> $user
                 ]);
         }
         return "Vous êtes pas administrateur";
     }
-    public function update_profil_post(Request $request, $id){
+    public function update_user_post(Request $request, $id){
         $user = Auth::user();
         if($user->profil->intitule == "administrateur"){
             $erreurs = new Collection();
             $this->validate($request, [
-                'intitule' => 'required'
+                'nom' => 'required',
+                'prenom' => 'required',
+                'mail' => 'required',
+                'login' => 'required|min:8',
+                'mdp' => 'required|min:8',
+                'profil' => 'exists:profil,id'
             ]);
 
-            $profils = Profil::all();
-            $profil = Profil::find($id);
+            $user = User::find($id);
+            $users = User::all();
 
-            foreach($profils as $p){
-                if($request->input('intitule') != $profil->intitule){
-                    if($request->input('intitule') == $p->intitule){
-                        $erreurs->prepend("Cet intitulé existe déjà !");
+            foreach($users as $u){
+                if($request->input('login') != $user->login){
+                    if($request->input('login') == $u->login){
+                        $erreurs->prepend("Ce login existe déjà !");
                         break;
                     }
                 }
             }
 
-            $profil->intitule = $request->input('intitule');
-
-            if(count($erreurs) > 0){
-                return response()->view('profil/update_profil', ['profil'=> $profil, 'erreurs'=>$erreurs]);
+            foreach($users as $u){
+                if($request->input('mail') != $user->mail){
+                    if($request->input('mail') == $u->mail){
+                        $erreurs->prepend("Cet email existe déjà !");
+                        break;
+                    }
+                }
             }
 
-            $profil->save();
-            return redirect('admin/profil/show');
+            $user->nom = $request->input('nom');
+            $user->prenom = $request->input('prenom');
+            $user->mail = $request->input('mail');
+            $user->login =  $request->input('login');
+            $user->mdp = $request->input('mdp');
+            if($request->input('actif')==1)
+                $user->actif = $request->input('actif');
+            else
+                $user->actif = 0;
+            if($request->input('parcours') != 0)
+                $user->parcours_id = $request->input('parcours');
+            if($request->input('groupe') != 0){
+                $user->groupe_id = $request->input('groupe');
+                $user->parcours_id = Groupe::find($request->input('groupe'))->parcours->id;
+            }
+
+            if(count($erreurs) > 0){
+                $parcours = Parcours::all();
+                $profils = Profil::all();
+                $groupes = Groupe::all();
+                $ues = Ue::all();
+                return response()->view('auth/update_compte', [
+                    'erreurs'=>$erreurs,
+                    'parcours'=>$parcours,
+                    'profils'=>$profils,
+                    'groupes'=>$groupes,
+                    'ues'=>$ues,
+                    'user'=> $user
+                ]);
+            }
+
+            if($request->input('profil') != 0)
+                $user->profil_id = $request->input('profil');
+            $user->save();
+
+            if(count($request->input('ues')) > 0){
+                $user->uesEnseignees()->detach();
+                foreach($request->input('ues') as $ue_id){
+                    $enseigner = new Enseigner();
+                    $enseigner->user_id = $user->id;
+                    $enseigner->ue_id = $ue_id;
+                    $enseigner->save();
+                }
+            }
+            return redirect('admin/user/show');
         }
         return "Vous êtes pas administrateur";
     }

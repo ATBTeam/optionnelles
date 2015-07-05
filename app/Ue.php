@@ -16,9 +16,4 @@ class Ue extends Model
     public function enseignants() {
         return $this->belongsToMany('\App\User', 'Enseigner')->withTimestamps(); // this matches the Eloquent model
     }
-
-    public function users()
-    {
-        return $this->belongsToMany('App\User');
-    }
 }

@@ -16,7 +16,7 @@ class CreateParcoursUeTable extends Migration
             $table->primary(['parcours_id', 'ue_id']);
             $table->tinyInteger('nbmin');
             $table->tinyInteger('nbmax');
-            $table->boolean('est_operationel');
+            $table->boolean('est_optionnel');
             $table->integer('parcours_id')->unsigned();
             $table->integer('ue_id')->unsigned();
 
