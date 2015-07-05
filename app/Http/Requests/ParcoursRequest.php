@@ -29,11 +29,11 @@ class ParcoursRequest extends Request
             'description' => 'required|max:500',
             'annee'       => 'required|min:1|max:10\numeric',
             'nb_opt_s1'   => 'required|min:1|max:10|numeric',
-            'deb_choix_s1'=> 'required|date',
-            'fin_choix_s1'=> 'required|date',
+            //'deb_choix_s1'=> 'required',
+            //'fin_choix_s1'=> 'required',
             'nb_opt_s2'   => 'required|min:1|max:10|numeric',
-            'deb_choix_s2'=> 'required|date',
-            'fin_choix_s2'=> 'required|date',
+            //'deb_choix_s2'=> 'required',
+            //'fin_choix_s2'=> 'required',
 
         ];
     }

@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group {!! $errors->has('deb_choix_s1') ? 'has-error' : '' !!}">
                     Date d'ouverture des choix :
-                    {!! Form::input('datetime-local','fin_choix_s1', Helpers::ConvertDateString($parcours->deb_choix_s1) ) !!}
+                    {!! Form::input('datetime-local','deb_choix_s1', Helpers::ConvertDateString($parcours->deb_choix_s1) ) !!}
                     {!! $errors->first('deb_choix_s1', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('fin_choix_s1') ? 'has-error' : '' !!}">
