@@ -21,4 +21,8 @@ class Parcours extends Model
     {
         return $this->belongsTo('App\Specialite'); // this matches the Eloquent model
     }
+
+    public function ues(){
+        return $this->belongsToMany('\App\Ue', 'Parcours_ue')->withTimestamps();
+    }
 }

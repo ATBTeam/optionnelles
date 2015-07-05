@@ -17,7 +17,7 @@
 <!-- Semestre Form Input-->
 <div class="form-group {!! $errors->has('semestre') ? 'has-error' : '' !!}">
     {!! Form::label('semestre', 'Semestre : ') !!}
-    {!! Form::select('semestre', array(1 => '1er semestre', 2 => '2e semestre'), '1', ['class' => 'form-control', 'placeholder' => 'Description']) !!}
+    {!! Form::select('semestre', array(1 => '1er semestre', 2 => '2e semestre'), '1', ['class' => 'form-control']) !!}
     {!! $errors->first('semestre', '
     <small class="help-block">:message</small>
     ') !!}
