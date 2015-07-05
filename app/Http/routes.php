@@ -48,7 +48,7 @@ Route::get('admin/groupe/show',['middleware' => 'auth', 'uses' => 'GroupeControl
 Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
 Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et testé
 
-Route::post('specialite/list/update', 'SpecialiteController@get_Update_Page'); // à tester
+Route::post('specialite/list/update', 'SpecialiteController@post_Update_Page'); // à tester
 Route::post('specialite/update/{id}', 'SpecialiteController@post_Update'); // à tester
 
 Route::get('specialite/list', 'SpecialiteController@get_List_Page'); // à développer
