@@ -13,7 +13,12 @@ class Ue extends Model
         return $this->hasMany('Parcours_ue'); // this matches the Eloquent model
     }
 
-    public function enseigners() {
-        return $this->hasMany('Enseigner'); // this matches the Eloquent model
+    public function enseignants() {
+        return $this->belongsToMany('\App\User', 'Enseigner')->withTimestamps(); // this matches the Eloquent model
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 }

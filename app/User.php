@@ -40,4 +40,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->belongsTo('App\Parcours'); // this matches the Eloquent model
     }
+
+    public function uesEnseignees(){
+        return $this->belongsToMany('\App\Ue', 'Enseigner')->withTimestamps();
+    }
 }

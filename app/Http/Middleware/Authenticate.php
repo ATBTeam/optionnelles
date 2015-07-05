@@ -38,7 +38,7 @@ class Authenticate
             if ($request->ajax()) {
                 //return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('compte/seConnecter');
+                return redirect()->guest('compte/login');
             }
         }
 

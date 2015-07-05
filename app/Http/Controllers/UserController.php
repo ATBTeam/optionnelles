@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enseigner;
 use App\Groupe;
 use App\Ue;
 use App\User;
@@ -241,12 +242,13 @@ class UserController extends Controller{
             $parcours = Parcours::all();
             $profils = Profil::all();
             $groupes = Groupe::all();
-            //$ues = Ue::all();
+            $ues = Ue::all();
             return response()->view('auth/add_user',
                 [
                     'parcours'=>$parcours,
                     'profils'=>$profils,
-                    'groupes'=>$groupes
+                    'groupes'=>$groupes,
+                    'ues'=>$ues
                 ]);
         }
         return "Vous êtes pas administrateur";
@@ -281,7 +283,65 @@ class UserController extends Controller{
             if($request->input('profil') != 0)
                 $user->profil_id = $request->input('profil');
             $user->save();
+            if(count($request->input('ues')) > 0){
+                foreach($request->input('ues') as $ue_id){
+                    $enseigner = new Enseigner();
+                    $enseigner->user_id = $user->id;
+                    $enseigner->ue_id = $ue_id;
+                    $enseigner->save();
+                }
+            }
             return redirect('admin/user/show');
+        }
+        return "Vous êtes pas administrateur";
+    }
+
+    //Fonction pour modifier un user ==> Done
+    public function update_user_get($id){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $parcours = Parcours::all();
+            $profils = Profil::all();
+            $groupes = Groupe::all();
+            $ues = Ue::all();
+            return response()->view('auth/update_user',
+                [
+                    'parcours'=>$parcours,
+                    'profils'=>$profils,
+                    'groupes'=>$groupes,
+                    'ues'=>$ues
+                ]);
+        }
+        return "Vous êtes pas administrateur";
+    }
+    public function update_profil_post(Request $request, $id){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $erreurs = new Collection();
+            $this->validate($request, [
+                'intitule' => 'required'
+            ]);
+
+            $profils = Profil::all();
+            $profil = Profil::find($id);
+
+            foreach($profils as $p){
+                if($request->input('intitule') != $profil->intitule){
+                    if($request->input('intitule') == $p->intitule){
+                        $erreurs->prepend("Cet intitulé existe déjà !");
+                        break;
+                    }
+                }
+            }
+
+            $profil->intitule = $request->input('intitule');
+
+            if(count($erreurs) > 0){
+                return response()->view('profil/update_profil', ['profil'=> $profil, 'erreurs'=>$erreurs]);
+            }
+
+            $profil->save();
+            return redirect('admin/profil/show');
         }
         return "Vous êtes pas administrateur";
     }
