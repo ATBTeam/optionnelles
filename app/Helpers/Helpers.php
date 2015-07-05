@@ -11,10 +11,9 @@ namespace App\Helpers;
 class Helpers {
 
     public static function ConvertDateString($dateString)
-    {
-        $myDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
-        $newDateString = $myDateTime->format('d/m/Y H:i');
-        return $newDateString;
+    {   //2013-10-09T15:38:00
+        $myDateTime=strftime('%Y-%m-%dT%H:%M:%S', strtotime($dateString));
+        return $myDateTime;
     }
 
 }
