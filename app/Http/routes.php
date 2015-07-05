@@ -28,12 +28,23 @@ Route::get('admin/compte/modifier','UserController@admin_modifierProfil');
 Route::get('admin/compte/reinitialiser','UserController@admin_reinitialiserMdp');
 
 //gestion des spécialités : en cours
-Route::get('specialite/add', 'SpecialiteController@get_Create_Page');
-Route::post('specialite/add', 'SpecialiteController@post_Create');
+Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
+Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et testé
 
-Route::get('specialite/update', 'SpecialiteController@get_Update_Page');
-Route::post('specialite/update/{id}', 'SpecialiteController@post_Update');
+Route::post('specialite/list/update', 'SpecialiteController@get_Update_Page'); // à tester
+Route::post('specialite/update/{id}', 'SpecialiteController@post_Update'); // à tester
 
-//formulaire de concact
+Route::get('specialite/list', 'SpecialiteController@get_List_Page'); // à développer
+
+//formulaire de concact : en cours => à parametrer @mail et à tester
 Route::get('contact', 'ContactController@getForm');
 Route::post('contact/form', 'ContactController@postForm');
+
+//gestion des parcours : en cours à développer
+Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // à développer
+Route::post('parcours/add', 'ParcoursController@post_Create');// à développer
+
+Route::get('parcours/update', 'ParcoursController@get_Update_Page');// à développer
+Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// à développer
+
+Route::get('parcours/list', 'ParcoursController@get_Update_Page');// à développer
