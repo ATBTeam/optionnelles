@@ -72,6 +72,13 @@
     </div>
 
     <div>
+        Ues</br>
+        @foreach($ues as $ue)
+            {{ $ue->intitule }}<input type="checkbox" name="ues[]" value="{{ $ue->id }}" />
+        @endforeach
+    </div>
+
+    <div>
         Nom
         <input type="text" name="nom" value="{{ old('nom') }}" placeholder="Nom">
         @if ($errors->has('nom')) <p>{{ $errors->first('nom') }}</p> @endif

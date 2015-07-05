@@ -16,4 +16,9 @@ class Ue extends Model
     public function enseigners() {
         return $this->hasMany('Enseigner'); // this matches the Eloquent model
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

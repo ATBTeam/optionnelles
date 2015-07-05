@@ -40,4 +40,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->belongsTo('App\Parcours'); // this matches the Eloquent model
     }
+
+    public function ues()
+    {
+        return $this->belongsToMany('App\Ue');
+    }
 }
