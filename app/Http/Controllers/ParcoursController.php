@@ -10,49 +10,69 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ParcoursRequest;
 use App\Parcours;
+use App\Specialite;
 
 class ParcoursController extends Controller{
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////// GET
 
-    //Fonction pour page création de spécioalité
+    //Fonction pour page création de parcours
     public function get_Create_Page(){
-        return view('parcoursCreation');
+        $specialites = Specialite::all();
+        return view('ParcoursCreation',['specialites'=> $specialites]);
     }
 
     //Fonction pour page modifier parcours
     public function get_Update_Page($parcours){
-        return response()->view('parcoursModification',['parcours'=> $parcours]);
+        $specialites = Specialite::all();
+        return response()->view('ParcoursModification',['parcours'=> $parcours, 'specialites'=>$specialites]);
     }
 
     //Fonction pour page liste des parcours
     public function get_List_Page(){
         $parcours = Parcours::all();
-        return response()->view('parcoursList',['parcours'=>  $parcours]);
+        return response()->view('ParcoursList',['parcours'=>  $parcours]);
     }
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
 
     //Fonction pour créer parcours
     public function post_Create(ParcoursRequest $request){
-        //1)test pour savoir si une spé a déja le même nom
+
+        $specialite = Specialite::findOrFail($request->input('specialite'));
         $parcours = new Parcours();
-        $parcours->intitule = $request->input('nom');
-        $parcours->description = $request->input('texte');
+        $parcours->intitule = $request->input('intitule');
+        $parcours->description = $request->input('description');
+        $parcours->annee = $request->input('annee');
+        $parcours->nb_opt_s1 = $request->input('nb_opt_s1');
+        $parcours->deb_choix_s1 = $request->input('deb_choix_s1');
+        $parcours->fin_choix_s1 = $request->input('fin_choix_s1');
+        $parcours->nb_opt_s2 = $request->input('nb_opt_s2');
+        $parcours->deb_choix_s2 = $request->input('deb_choix_s2');
+        $parcours->fin_choix_s2 = $request->input('fin_choix_s2');
+        $parcours->specialite_id= $specialite->id;
         $parcours->save();
-        $text = "Le parcours: ".$request->input('nom')." à été ajoutée";
+        $text = "Le parcours: ".$request->input('intitule')." à été ajouté";
         return view("confirmation",['text'=>$text]);
     }
 
     //Fonction pour modifier parcours
     public function post_Update(ParcoursRequest $request, $id){
         $parcours = Parcours::findOrFail($id);
-        $old = $parcours->intitule;
-        $parcours->intitule = $request->input('nom');
-        $parcours->description = $request->input('texte');
+        $specialite = Specialite::findOrFail($request->input('specialite'));
+        $parcours->intitule = $request->input('intitule');
+        $parcours->description = $request->input('description');
+        $parcours->annee = $request->input('annee');
+        $parcours->nb_opt_s1 = $request->input('nb_opt_s1');
+        $parcours->deb_choix_s1 = $request->input('deb_choix_s1');
+        $parcours->fin_choix_s1 = $request->input('fin_choix_s1');
+        $parcours->nb_opt_s2 = $request->input('nb_opt_s2');
+        $parcours->deb_choix_s2 = $request->input('deb_choix_s2');
+        $parcours->fin_choix_s2 = $request->input('fin_choix_s2');
+        $parcours->specialite_id= $specialite->id;
         $parcours->save();
-        $text = "Le parcours: ".$old."=>".$request->input('nom')." à été modifiée";
+        $text = "Le parcours: ".$request->input('intitule')." à été modifiée";
         return view("confirmation",['text'=>$text]);
     }
 
