@@ -29,6 +29,7 @@ class ParcoursController extends Controller{
         return response()->view('ParcoursModification',['parcours'=> $parcours, 'specialites'=>$specialites]);
     }
 
+
     //Fonction pour page liste des parcours
     public function get_List_Page(){
         $parcours = Parcours::all();
@@ -81,10 +82,22 @@ class ParcoursController extends Controller{
         $parcours = Parcours::findOrFail($request->input('parcours'));
         return $this->get_Update_Page($parcours);
     }
+
+    //Fonction pour page confirmation supression  parcours
+    public function post_Delete_Page(Request $request){
+        $parcours = Parcours::findOrFail($request->input('id_parcours'));
+        return response()->view('ParcoursSuppression',['parcours'=> $parcours]);
+    }
+
     //Fonction pour supprimer spécialité
-    public function Delete($id){
+    public function post_DeleteConfirm($id){
+        $text = Parcours::findOrFail($id)->intitule. " à été supprimé";
         Parcours::destroy($id);
-        return "page de validation parcours supprimée";
+        return view("confirmation",['text'=>$text]);
+    }
+    public function post_DeleteCancel(){
+        $text= "Supression annulée";
+        return view("confirmation",['text'=>$text]);
     }
 
 }
