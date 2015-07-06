@@ -24,4 +24,16 @@ class Choix extends Model
     {
         return $this->belongsTo('App\Parcours'); // this matches the Eloquent model
     }
+    
+    public function scopeParParcours($query, $parcours_Id){
+        return $query->where('parcours_id', $parcours_Id);
+    }
+
+    public function scopeParUser($query, $user_Id){
+        return $query->where('user_id', $user_Id);
+    }
+
+    public function scopeParUe($query, $ue_Id){
+        return $query->where('ue_id', $ue_Id);
+    }
 }
