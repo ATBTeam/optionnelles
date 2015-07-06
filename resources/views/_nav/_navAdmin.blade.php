@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li>logged as : </li>
-                <li><a href="{!! url('compte/logout') !!}">Logout</a></li>
+                <li><a href="{!! url('logout') !!}">Logout</a></li>
             </ul>
         </div>
     </div>
