@@ -7,13 +7,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/optionnelles/public">UE Optionnelles</a>
+            <a class="navbar-brand" href="{!! url('/') !!}">UE Optionnelles</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/optionnelles/public/specialite/list">Spécialités</a></li>
+                <li><a href="{!! url('specialite/list') !!}">Spécialités</a></li>
 
-                <li><a href="/optionnelles/public/parcours/list">Parcours</a></li>
+                <li><a href="{!! url('parcours/list') !!}">Parcours</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
