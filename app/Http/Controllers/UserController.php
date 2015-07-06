@@ -54,8 +54,8 @@ class UserController extends Controller{
     }
     public function register_post(Request $request){
         $this->validate($request, [
-            'nom' => 'required',
-            'prenom' => 'required',
+            'nom' => 'required|max:50',
+            'prenom' => 'required|max:50',
             'mail' => 'required|unique:user',
             'login' => 'required|unique:user|min:8',
             'mdp1' => 'required|min:8|same:mdp2',
