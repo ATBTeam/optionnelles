@@ -84,5 +84,17 @@ class Helpers {
         }
 
     }
+    public static function isVisit()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+           return false;
+        }
+        else{
+            return true;
+        }
+
+    }
 
 }
