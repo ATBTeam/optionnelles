@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class Helpers {
 
@@ -27,4 +28,73 @@ class Helpers {
         //else return redirect('/');
         else return null;
     }
+
+    public static function isAdmin()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "administrateur"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public static function isEtud()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "étudiant"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public static function isProf()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "professeur"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public static function isSecr()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "secrétariat"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+    public static function isVisit()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+           return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
 }
