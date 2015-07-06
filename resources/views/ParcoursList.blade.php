@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template.templateAdmin')
 
 @section('contenu')
     <br xmlns="http://www.w3.org/1999/html">

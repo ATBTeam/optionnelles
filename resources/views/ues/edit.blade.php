@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template.templateAdmin')
 
 @section('contenu')
     <h1>Modifier : {!! $ue->intitule !!}</h1>

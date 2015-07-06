@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template.templateAdmin')
 
 @section('style')
     <style>

@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template.templateAdmin')
 
 @section('contenu')
     <h1>Liste de mes choix</h1>

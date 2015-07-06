@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template.templateAdmin')
 
 @section('contenu')
     <h1>Liste des Choix disponibles pour les {!! $parcours->intitule !!}</h1>

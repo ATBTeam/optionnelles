@@ -28,7 +28,18 @@ class UserController extends Controller{
 
     //Fonction pour la page d'accueil
     public function accueil_page(){
-        return view('accueil');
+        $user = Auth::user();
+        if(isset($user))
+        {
+            switch($user->profil->intitule){
+                case 'administrateur': return response()->view('accueil/accueilAdmin');
+                case 'professeur': return response()->view('accueil/accueilProf');
+                case 'secrétariat': return response()->view('accueil/accueilSecr');
+                case 'étudiant': return response()->view('accueil/accueilEtud');
+                default : return response()->view('accueil/accueilEtud');
+            }
+        }
+        return response()->view('accueil/accueilEtud');
     }
 
     //Etudiant
@@ -80,10 +91,10 @@ class UserController extends Controller{
         if ($user->actif == 1){
             Auth::login($user);
             switch($user->profil->intitule){
-                case 'administrateur': return "Page acceuil pour un administrateur";
-                case 'professeur': return "Page acceuil pour un professeur";
-                case 'secrétariat': return "Page acceuil pour un secrétariat";
-                case 'étudiant': return "Page acceuil pour un étudiant";
+                case 'administrateur': return response()->view('accueil/accueilAdmin');
+                case 'professeur': return response()->view('accueil/accueilProf');
+                case 'secrétariat': return response()->view('accueil/accueilSecr');
+                case 'étudiant': return response()->view('accueil/accueilEtud');
             }
         }else{
             return response()->view('auth/login', ['actif'=> $user->actif]);
