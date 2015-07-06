@@ -13,6 +13,7 @@
 
     <div class="gestion_user">
         <h2>PAGE DE GESTION DES UTILISATEURS</h2>
+        <a href="add">Créer un nouveau utilisateur</a>
         @if(isset($users))
             <table class="bordered">
                 <thead>
@@ -63,5 +64,6 @@
                 @endforeach
             </table>
         @endif
+        <a href="add">Créer un nouveau utilisateur</a>
     </div>
 @stop
