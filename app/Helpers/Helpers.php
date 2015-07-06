@@ -42,4 +42,47 @@ class Helpers {
         }
 
     }
+
+    public static function isEtud()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "étudiant"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public static function isProf()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "professeur"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public static function isSecr()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "secrétariat"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
+    }
+
 }
