@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-//php artisan make:model User --migration => Créer Model + class de migration
 class Choix extends Model
 {
+
     protected $table = 'choix';
     protected $fillable = ['user_id', 'ue_id', 'parcours_id', 'date_choix'];
 

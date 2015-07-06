@@ -93,3 +93,4 @@ Route::patch('ue/{ue}', 'UesController@update');
 Route::get('choix', 'ChoixController@index');
 Route::get('choix/choisir', 'ChoixController@create');
 Route::get('compte/choix', 'ChoixController@meschoix');
+Route::post('choix', 'ChoixController@store');
