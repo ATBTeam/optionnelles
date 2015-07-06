@@ -1,4 +1,4 @@
-<nav <nav class="navbar navbar-inverse navbar-fixed-top">
+ <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -11,15 +11,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{!! url('specialite/list') !!}">Spécialités</a></li>
-                <li><a href="{!! url('parcours/list') !!}">Parcours</a></li>
+                <li><a href="{!! url('specialite/') !!}">Spécialités</a></li>
+                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
                 <li><a href="{!! url('ue') !!}">UE</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{!! url('specialite/list') !!}">Spécialités</a></li>
+                <li><a href="{!! url('specialite') !!}">Spécialités</a></li>
 
-                <li><a href="{!! url('parcours/list') !!}">Parcours</a></li>
+                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
             </ul>
         </div>
     </div>
