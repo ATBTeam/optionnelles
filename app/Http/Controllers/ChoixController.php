@@ -98,7 +98,7 @@ class ChoixController extends Controller
             }
         }
         if($plusDePlace)
-            return redirect('choix/choisir')->withInput();
+            return redirect('choix/choisir');
         else
             return redirect('choix');
     }
