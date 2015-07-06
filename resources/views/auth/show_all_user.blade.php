@@ -5,7 +5,7 @@
         body{width:100%; margin:auto;}
         td{font-size:12px;}
         th{font-size:16px;}
-        .gestion_user{width:95%; margin:auto;}
+        .gestion_user{width:95%; margin:auto; margin-top:50px;}
     </style>
 
 @section('contenu')
