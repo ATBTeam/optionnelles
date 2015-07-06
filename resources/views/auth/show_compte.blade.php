@@ -63,11 +63,12 @@
                     </div>
                 </div>
             @endif
-
-            <div class="panel-body">
-            {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
-            {!! Form::close() !!}
-            </div>
+            @if ($user->profil->intitule=='administrateur')
+                <div class="panel-body">
+                {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
+                {!! Form::close() !!}
+                </div>
+            @endif
         </div>
     </div>
 @stop
