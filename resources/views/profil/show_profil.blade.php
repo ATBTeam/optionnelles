@@ -20,8 +20,10 @@
                 <tr>
                     <th>Id</th>
                     <th>Intitulé</th>
+                    <!--
                     <th>Modifier</th>
                     <th>Supprimer</th>
+                    -->
                 </tr>
                 </thead>
 
@@ -29,8 +31,10 @@
                     <tr>
                         <td>{{ $profil->id }}</td>
                         <td>{{ $profil->intitule }}</td>
+                        <!--
                         <td><a href="update/{{ $profil->id }}" >modifier</a></td>
                         <td><a href="delete/{{ $profil->id }}" >supprimer</a></td>
+                        -->
                     </tr>
                 @endforeach
             </table>
