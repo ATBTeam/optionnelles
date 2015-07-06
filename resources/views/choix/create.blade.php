@@ -34,7 +34,7 @@
                                 Vous devez choisir <strong>{!! App\Parcours::find($parcours_id)->nb_opt_s2 !!} UE</strong> pour ce semestre.
                             @endif
                         </div>
-                        <div class="form-group {!! $errors->has('choix') ? 'has-error' : '' !!}">
+                        <div class="form-group {!! \Session::get('trop_choix_s'.$semestre)  ? 'has-error' : '' !!}">
                             @foreach($ues[$semestre-1] as $ue)
                                 <article>
                                     @if(App\Parcours_ue::parcoursUe($parcours_id, $ue->id)->first()->nbmax
