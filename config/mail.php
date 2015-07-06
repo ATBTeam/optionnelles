@@ -54,7 +54,7 @@ return [
     |
     */
     //Ajout thomas envoi de mail à modifier en fct hébergeur et @
-    'from' => ['address' => 'moi@free.fr', 'name' => 'Administrateur'],
+    'from' => ['address' => 'thomas.leclerc7@orange.fr', 'name' => 'Administrateur'],
     //'from' => ['address' => null, 'name' => null],
 
     /*

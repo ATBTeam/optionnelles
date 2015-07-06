@@ -13,7 +13,7 @@ class ContactController extends Controller {
 
     public function postForm(ContactRequest $request)
     {
-        Mail::send('emails.contact', $request->all(), function($message)
+        Mail::send('contact', $request->all(), function($message)
         {
             $message->to('thomas.leclerc7@orange.fr')->subject('Contact'); //modifier addresse attention erreur ->to
         });
