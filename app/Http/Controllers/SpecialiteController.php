@@ -18,18 +18,18 @@ class SpecialiteController extends Controller{
 
     //Fonction pour page création de spécioalité
     public function get_Create_Page(){
-        return view('specialiteCreation');
+        return view('specialite/specialiteCreation');
     }
 
     //Fonction pour page modifier spécialité
     public function get_Update_Page($specialite){
-        return response()->view('specialiteModification',['specialite'=> $specialite]);
+        return response()->view('specialite/specialiteModification',['specialite'=> $specialite]);
     }
 
     //Fonction pour page liste spécialité
     public function get_List_Page(){
         $specialites = Specialite::all();
-        return response()->view('specialiteList',['specialites'=>  $specialites]);
+        return response()->view('specialite/specialiteList',['specialites'=>  $specialites]);
     }
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
@@ -64,7 +64,7 @@ class SpecialiteController extends Controller{
     //Fonction pour page confirmation supression  specialite
     public function post_Delete_Page(Request $request){
         $specialite = Specialite::findOrFail($request->input('id_specialite'));
-        return response()->view('SpecialiteSuppression',['specialite'=> $specialite]);
+        return response()->view('specialite/SpecialiteSuppression',['specialite'=> $specialite]);
     }
 
     //Fonction pour supprimer spécialité

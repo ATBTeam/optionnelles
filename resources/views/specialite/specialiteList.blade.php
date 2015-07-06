@@ -6,7 +6,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">LISTE DES SPECIALITES</div>
             <div class="panel-body">
-                {!! Form::open(['url' => 'specialite/update']) !!}
+                {!! Form::open(['url' => 'admin/specialite/update']) !!}
                 <div>
                     <script type="text/javascript">
                         function JsOnSelect()
@@ -27,13 +27,13 @@
                 </div>
                 {!! Form::submit('Modifier', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
-                {!! Form::open(['url' => 'specialite/delete']) !!}
+                {!! Form::open(['url' => 'admin/specialite/delete']) !!}
                 {!! Form::submit('Supprimer', ['class' => 'btn btn-info pull-right']) !!}
                 @if (isset($specialites))
                     <input type="hidden" name="id_specialite" id="id_specialite" value="{{$specialites[0]->id}}">
                 @endif
                 {!! Form::close() !!}
-                {!! Form::open(['url' => 'specialite/add', 'method'=>'GET']) !!}
+                {!! Form::open(['url' => 'admin/specialite/add', 'method'=>'GET']) !!}
                 {!! Form::submit('Ajouter', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
             </div>
