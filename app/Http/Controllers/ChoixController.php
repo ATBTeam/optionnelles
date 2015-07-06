@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Choix;
 use App\Parcours;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -17,66 +18,28 @@ class ChoixController extends Controller
     {
         $choix = Choix::all();
 
-        return view ('choix.index', compact($choix));
+        return view ('choix.index', compact('choix'));
     }
 
     public function create()
     {
+        // TODO : remplacer  User::find(1)  par Auth::user()
+        //$parcours = Auth::user()->parcours()->first();
+        $parcours = User::find(3)->parcours()->first();
 
-        return view('choix.create', compact('ues'));
+        $ues = $parcours->ues()->get();
+        return view('choix.create', compact('parcours', 'ues'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
+    public function show($id){
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    public function mesChoix(){
+        // TODO remplacer User::find(1) par Auth::user()
+        //$choix = Auth::user()->choixes()->get();
+        $choix = User::find(1)->choixes()->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view ('choix.meschoix', compact('choix'));
     }
 }

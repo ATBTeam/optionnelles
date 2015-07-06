@@ -87,3 +87,8 @@ Route::get('ue/{ue}', 'UesController@show');
 Route::post('ue', 'UesController@store');
 Route::get('ue/{ue}/edit', 'UesController@edit');
 Route::patch('ue/{ue}', 'UesController@update');
+
+// Gestion des Choix : TODO (work in progress)
+Route::get('choix', 'ChoixController@index');
+Route::get('choix/choisir', 'ChoixController@create');
+Route::get('compte/choix', 'ChoixController@meschoix');
