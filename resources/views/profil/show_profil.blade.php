@@ -13,7 +13,7 @@
 
     <div class="gestion_user">
         <h2>PAGE DE GESTION DES PROFILS</h2>
-        <a href="add">Créer un nouveau profil</a>
+        <!--<a href="add">Créer un nouveau profil</a>-->
         @if(isset($profils))
             <table class="bordered">
                 <thead>
@@ -39,6 +39,6 @@
                 @endforeach
             </table>
         @endif
-        <a href="add">Créer un nouveau profil</a>
+        <!-- <a href="add">Créer un nouveau profil</a>-->
     </div>
 @stop

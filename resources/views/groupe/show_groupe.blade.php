@@ -33,8 +33,8 @@
                         <td>{{ $groupe->intitule }}</td>
                         <td>{{ $groupe->description }}</td>
                         <td>{{ $groupe->parcours->intitule }}</td>
-                        <td><a href="admin/groupe/update/{{$groupe->id}}" >modifier</a></td>
-                        <td><a href="admin/groupe/delete/{{$groupe->id}}" >supprimer</a></td>
+                        <td><a href="{!! url('admin/groupe/update/'.$groupe->id)!!}" >modifier</a></td>
+                        <td><a href="{!! url('admin/groupe/delete/'.$groupe->id)!!}" >supprimer</a></td>
                     </tr>
                 @endforeach
             </table>
