@@ -7,6 +7,7 @@
  */
 
 namespace App\Helpers;
+use Illuminate\Support\Facades\Auth;
 
 class Helpers {
 
@@ -16,4 +17,13 @@ class Helpers {
         return $myDateTime;
     }
 
+    public static function GetCurrentUser()
+    {
+        if(Auth::check())
+        {
+           $user = Auth::user();
+           return $user;
+        }
+        else return response()->view('accueil/accueilEtud');
+    }
 }

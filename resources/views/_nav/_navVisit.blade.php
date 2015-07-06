@@ -20,9 +20,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{!! url('specialite') !!}">Spécialités</a></li>
-
-                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
+                <li><a href="{!! url('login') !!}">Login</a></li>
             </ul>
         </div>
     </div>

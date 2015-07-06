@@ -1,4 +1,4 @@
- <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -15,15 +15,14 @@
                 <li><a href="{!! url('admin/parcours') !!}">Parcours</a></li>
                 <li><a href="{!! url('admin/ue') !!}">UE</a></li>
                 <li><a href="{!! url('admin/user') !!}">Utilisateurs</a></li>
-                <li><a href="{!! url('admin/profil') !!}">UE</a></li>
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{!! url('specialite') !!}">Spécialités</a></li>
 
-                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
+                <li>logged as : {{ Helpers::GetCurrentUser()->login }}
+                <li><a href="{!! url('compte/logout') !!}">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
+

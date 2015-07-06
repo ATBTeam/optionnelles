@@ -1,4 +1,4 @@
-@extends('template.templateAdmin')
+@extends('template.templateSecr')
 
 @section('contenu')
 <h1>Bienvenue sur la gestion des optionnelles !</h1>

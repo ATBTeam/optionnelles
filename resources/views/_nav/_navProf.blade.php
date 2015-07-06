@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{!! url('/') !!}">UE Optionnelles</a>
+            <a class="navbar-brand" href="{!! url('/') !!}">PROFESSEUR</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -20,9 +20,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{!! url('specialite') !!}">Spécialités</a></li>
-
-                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
+                <li><a href="{!! url('logout') !!}">Logout</a></li>
             </ul>
         </div>
     </div>

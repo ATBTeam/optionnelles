@@ -39,7 +39,7 @@ class UserController extends Controller{
                 default : return response()->view('accueil/accueilVisit');
             }
         }
-        return response()->view('accueil/accueilEtud');
+        return response()->view('accueil/accueilVisit');
     }
 
     //Etudiant
