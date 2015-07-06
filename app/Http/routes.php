@@ -62,24 +62,24 @@ Route::get('contact', 'ContactController@getForm');//OK et testé
 Route::post('contact/form', 'ContactController@postForm'); // OK et testé
 
 //gestion des spécialités : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
-Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
-Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et testé
-Route::post('specialite/update', 'SpecialiteController@post_Update_Page'); // OK et testé
-Route::post('specialite/update/{id}', 'SpecialiteController@post_Update'); // OK et testé
-Route::post('specialite/delete', 'SpecialiteController@post_Delete_Page'); // OK et testé
-Route::post('specialite/deleteCancel', 'SpecialiteController@post_DeleteCancel'); // OK et testé
-Route::post('specialite/deleteConfirm/{id}', 'SpecialiteController@post_DeleteConfirm'); // OK et testé
-Route::get('specialite', 'SpecialiteController@get_List_Page'); // OK et testé
+Route::get('admin/specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
+Route::post('admin/specialite/add', 'SpecialiteController@post_Create'); // OK et testé
+Route::post('admin/specialite/update', 'SpecialiteController@post_Update_Page'); // OK et testé
+Route::post('admin/specialite/update/{id}', 'SpecialiteController@post_Update'); // OK et testé
+Route::post('admin/specialite/delete', 'SpecialiteController@post_Delete_Page'); // OK et testé
+Route::post('admin/specialite/deleteCancel', 'SpecialiteController@post_DeleteCancel'); // OK et testé
+Route::post('admin/specialite/deleteConfirm/{id}', 'SpecialiteController@post_DeleteConfirm'); // OK et testé
+Route::get('admin/specialite', 'SpecialiteController@get_List_Page'); // OK et testé
 
 //gestion des parcours : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
-Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // OK et testé
-Route::post('parcours/add', 'ParcoursController@post_Create');// OK et testé
-Route::post('parcours/update', 'ParcoursController@post_Update_Page');// OK et testé
-Route::post('parcours/update/{id}', 'ParcoursController@post_Update');// OK et testé
-Route::post('parcours/delete', 'ParcoursController@post_Delete_Page'); // OK et testé
-Route::post('parcours/deleteCancel', 'ParcoursController@post_DeleteCancel'); // OK et testé
-Route::post('parcours/deleteConfirm/{id}', 'ParcoursController@post_DeleteConfirm'); // OK et testé
-Route::get('parcours', 'ParcoursController@get_List_Page');// OK et testé
+Route::get('admin/parcours/add', 'ParcoursController@get_Create_Page'); // OK et testé
+Route::post('admin/parcours/add', 'ParcoursController@post_Create');// OK et testé
+Route::post('admin/parcours/update', 'ParcoursController@post_Update_Page');// OK et testé
+Route::post('admin/parcours/update/{id}', 'ParcoursController@post_Update');// OK et testé
+Route::post('admin/parcours/delete', 'ParcoursController@post_Delete_Page'); // OK et testé
+Route::post('admin/parcours/deleteCancel', 'ParcoursController@post_DeleteCancel'); // OK et testé
+Route::post('admin/parcours/deleteConfirm/{id}', 'ParcoursController@post_DeleteConfirm'); // OK et testé
+Route::get('admin/parcours', 'ParcoursController@get_List_Page');// OK et testé
 
 // Gestion des UEs : TODO (Florian, work in progress)
 Route::get('ue', 'UesController@index');

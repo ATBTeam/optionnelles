@@ -6,7 +6,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">Modifier Spécialité</div>
             <div class="panel-body">
-                {!! Form::open(['url' => 'specialite/update/'.$specialite->id]) !!}
+                {!! Form::open(['url' => 'admin/specialite/update/'.$specialite->id]) !!}
                 <div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
                     {!! Form::text('nom', $specialite->intitule, ['class' => 'form-control', 'placeholder' => 'Nom de la Spécialité']) !!}
                     {!! $errors->first('nom', '<small class="help-block">:message</small>') !!}

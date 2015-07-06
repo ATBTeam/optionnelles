@@ -172,7 +172,7 @@
     <!--End of Truong-->
 </head>
 <body>
-@include('_nav._navAdmin')
+@include('_nav._navEtud')
 @yield('contenu')
 
 </body>
