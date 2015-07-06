@@ -12,25 +12,26 @@
 Route::get('/','UserController@accueil_page');
 
 // Gérer des comptes des étudiants ==> Done
-Route::get('compte/add','UserController@register_get');
-Route::post('compte/add','UserController@register_post');
+Route::get('compte/register','UserController@register_get');
+Route::post('compte/register','UserController@register_post');
 Route::get('compte/login','UserController@login_get');
 Route::post('compte/login','UserController@login_post');
 Route::get('compte/logout','UserController@logout');
-Route::get('compte/show',['middleware' => 'auth', 'uses' => 'UserController@show_compte']);
+Route::get('compte/show',['middleware' => 'auth', 'uses' => 'UserController@show_compte_get']);
+Route::post('compte/show',['middleware' => 'auth', 'uses' => 'UserController@show_compte_post']);
 Route::get('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
 Route::post('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
 Route::get('compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des comptes des autres (administrateur, professeur, secrétariat) => en cours
-Route::get('admin/compte/add','UserController@admin_register_get');
-Route::post('admin/compte/add','UserController@admin_register_post');
-Route::get('admin/compte/login','UserController@login_get');
-Route::post('admin/compte/login','UserController@login_post');
-Route::get('admin/compte/logout','UserController@logout');
-Route::get('admin/compte/show',['middleware' => 'auth', 'uses' => 'UserController@admin_show_compte']);
-Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
-Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
+Route::get('admin/compte/register','UserController@admin_register_get');
+Route::post('admin/compte/register','UserController@admin_register_post');
+//Route::get('admin/compte/login','UserController@login_get');
+//Route::post('admin/compte/login','UserController@login_post');
+//Route::get('admin/compte/logout','UserController@logout');
+//Route::get('admin/compte/show',['middleware' => 'auth', 'uses' => 'UserController@admin_show_compte']);
+//Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
+//Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
 Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des utilisateurs => Done

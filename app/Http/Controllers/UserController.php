@@ -97,11 +97,17 @@ class UserController extends Controller{
     }
 
     //Fonction pour afficher profil ==> Done
-    public function show_compte(){
+    public function show_compte_get(){
         if (Auth::check())
         {
             $user = Auth::user();
             return response()->view('auth/show_compte', ['user'=> $user]);
+        }
+    }
+    public function show_compte_post(){
+        if (Auth::check())
+        {
+            return redirect('compte/update');
         }
     }
 
@@ -160,9 +166,8 @@ class UserController extends Controller{
         }
 
         $user->save();
-        if ($user->profil->intitule != "étudiant")
-            return redirect('admin/compte/show');
-        else return redirect('compte/show');
+
+        return redirect('compte/show');
     }
 
     //Fonction pour reinitialiser mot de passe

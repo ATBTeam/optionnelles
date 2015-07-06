@@ -4,10 +4,7 @@
     <br>
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
-            <div class="panel-heading">Se connecter
-                @if (isset($actif))
-                    <div style="color:red;">Votre compte n'est pas encore activé !</div>
-                @endif
+            <div class="panel-heading">PAGE DE CONNECTION
                 {!! Form::open(['url' => 'compte/login']) !!}
             </div>
             <div class="panel-body">
@@ -15,13 +12,16 @@
                     Login :
                     {!! Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'votre login']) !!}
                     {!! $errors->first('login', '<small class="help-block">:message</small>') !!}
+                    @if (isset($actif))
+                        <small style="color:#a94442;" class="help-block">Votre compte n'est pas encore activé !</small>
+                    @endif
                 </div>
                 <div class="form-group {!! $errors->has('mdp') ? 'has-error' : '' !!}">
                    Mot de passe:
-                    {!! Form::password('mdp', null, ['class' => 'form-control', 'placeholder' => "votre mot de passe"]) !!}
+                    {!! Form::password('mdp', ['class' => 'form-control', 'placeholder' => "votre mot de passe"]) !!}
                     {!! $errors->first('mdp', '<small class="help-block">:message</small>') !!}
                 </div>
-                {!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
+                {!! Form::submit('Se connecter !', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

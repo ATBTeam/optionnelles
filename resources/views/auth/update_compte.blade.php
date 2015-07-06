@@ -1,77 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
+@extends('template')
 
-<!-- resources/views/auth/register.blade.php -->
-
-<form method="POST" action="update">
-    {!! csrf_field() !!}
-
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    @if (isset($erreurs))
-        @if (count($erreurs) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($erreurs as $erreur)
-                        <li>{{ $erreur }}</li>
-                    @endforeach
-                </ul>
+@section('contenu')
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">PAGE DE MISE A JOUR VOTRE COMPTE
+                {!! Form::open(['url' => 'compte/update']) !!}
             </div>
-        @endif
-    @endif
-
-    <div>
-        Nom
-        <input type="text" name="nom" value="{{ $user->nom }}" placeholder="Votre nom">
-        @if ($errors->has('nom')) <p>{{ $errors->first('nom') }}</p> @endif
+            @if(isset($user))
+                <div class="panel-heading">Vos informations</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @if (isset($erreurs))
+                            @if (count($erreurs) > 0)
+                                @foreach ($erreurs as $erreur)
+                                    <small style="color:#a94442;" class="help-block">{{ $erreur }}</small>
+                                @endforeach
+                            @endif
+                        @endif
+                    </div>
+                    <div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
+                        Nom :
+                        {!! Form::text('nom', $user->nom, ['class' => 'form-control']) !!}
+                        {!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group {!! $errors->has('prenom') ? 'has-error' : '' !!}">
+                        Prénom :
+                        {!! Form::text('prenom', $user->prenom, ['class' => 'form-control']) !!}
+                        {!! $errors->first('prenom', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group {!! $errors->has('mail') ? 'has-error' : '' !!}">
+                        E-mail :
+                        {!! Form::email('mail', $user->mail, ['class' => 'form-control']) !!}
+                        {!! $errors->first('mail', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group {!! $errors->has('login') ? 'has-error' : '' !!}">
+                        Login :
+                        {!! Form::text('login', $user->login, ['class' => 'form-control']) !!}
+                        {!! $errors->first('login', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group {!! $errors->has('mdp1') ? 'has-error' : '' !!}">
+                        Votre mot de passe :
+                        {!! Form::password('mdp1', ['class' => 'form-control', 'placeholder' => 'votre mot de passe']) !!}
+                        {!! $errors->first('mdp1', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group {!! $errors->has('mdp2') ? 'has-error' : '' !!}">
+                        Votre nouveau mot de passe :
+                        {!! Form::password('mdp2', ['class' => 'form-control', 'placeholder' => 'votre nouveau mot de passe']) !!}
+                        {!! $errors->first('mdp2', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
+                    {!! Form::close() !!}
+                </div>
+            @endif
+        </div>
     </div>
-
-    <div>
-        Prénom
-        <input type="text" name="prenom" value="{{ $user->prenom }}" placeholder="Votre prénom">
-        @if ($errors->has('prenom')) <p>{{ $errors->first('prenom') }}</p> @endif
-    </div>
-
-    <div>
-        Email
-        <input type="email" name="mail" value="{{ $user->mail }}" placeholder="Votre email">
-        @if ($errors->has('mail')) <p>{{ $errors->first('mail') }}</p> @endif
-    </div>
-
-    <div>
-        Login
-        <input type="text" name="login" value="{{ $user->login }}" placeholder="Votre login">
-        @if ($errors->has('login')) <p>{{ $errors->first('login') }}</p> @endif
-    </div>
-
-    <div>
-        Tapez votre mot de passe
-        <input type="password" name="mdp1" placeholder="Votre mot de passe">
-        @if ($errors->has('mdp1')) <p>{{ $errors->first('mdp1') }}</p> @endif
-    </div>
-
-    <div>
-        Tapez votre nouveau mot de passe
-        <input type="password" name="mdp2" placeholder="Votre nouveau mot de passe">
-        @if ($errors->has('mdp2')) <p>{{ $errors->first('mdp2') }}</p> @endif
-    </div>
-
-    <div>
-        <button type="submit">Mettre à jours</button>
-    </div>
-</form>
-
-</body>
-</html>
+@stop
