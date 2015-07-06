@@ -12,11 +12,11 @@
 Route::get('/','UserController@accueil_page');
 
 // Gérer des comptes des étudiants ==> Done
-Route::get('compte/register','UserController@register_get');
-Route::post('compte/register','UserController@register_post');
-Route::get('compte/login','UserController@login_get');
-Route::post('compte/login','UserController@login_post');
-Route::get('compte/logout','UserController@logout');
+Route::get('register','UserController@register_get');
+Route::post('register','UserController@register_post');
+Route::get('login','UserController@login_get');
+Route::post('login','UserController@login_post');
+Route::get('logout','UserController@logout');
 Route::get('compte',['middleware' => 'auth', 'uses' => 'UserController@show_compte_get']);
 Route::post('compte',['middleware' => 'auth', 'uses' => 'UserController@show_compte_post']);
 Route::get('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);

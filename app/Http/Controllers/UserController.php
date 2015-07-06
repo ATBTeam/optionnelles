@@ -74,7 +74,7 @@ class UserController extends Controller{
         $profil = Profil::where('intitule', 'étudiant')->get()->first();
         $user->profil_id = $profil->id;
         $user->save();
-        return redirect('compte/login');
+        return redirect('login');
     }
 
     //Fonction pour se connecter ==> Done
@@ -104,7 +104,7 @@ class UserController extends Controller{
     //Fonction pour se deconnecter  ==> Done
     public function logout(){
         Auth::logout();
-        return "page pour se deconnecter";
+        return "/";
     }
 
     //Fonction pour afficher profil ==> Done
@@ -226,7 +226,7 @@ class UserController extends Controller{
         $user->parcours_id = $request->input('parcours');
         $user->profil_id = $request->input('profil');
         $user->save();
-        return redirect('compte/login');
+        return redirect('login');
     }
 
     //Fonction pour afficher compte ==> Done
