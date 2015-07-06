@@ -87,7 +87,7 @@ class UserController extends Controller{
                 case 'étudiant': return response()->view('accueil/accueilEtud');
             }
         }
-        return response()->view('login');
+        return response()->view('Auth/login');
     }
     public function login_post(Request $request){
         $this->validate($request, [
