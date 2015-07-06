@@ -7,20 +7,25 @@
  */
 
 namespace App\Http\Controllers;
+use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ParcoursRequest;
 use App\Parcours;
 use App\Specialite;
+use App\User;
 
 class ParcoursController extends Controller{
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////// GET
 
+
     //Fonction pour page création de parcours
     public function get_Create_Page(){
+        if(!Helpers::isAdmin())return redirect('/');
         $specialites = Specialite::all();
         return view('parcours/ParcoursCreation',['specialites'=> $specialites]);
+
     }
 
     //Fonction pour page modifier parcours

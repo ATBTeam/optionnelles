@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class Helpers {
 
@@ -26,5 +27,19 @@ class Helpers {
         }
         //else return redirect('/');
         else return null;
+    }
+
+    public static function isAdmin()
+    {
+        $user = Auth::user();
+        if(isset($user))
+        {
+            if($user->profil->intitule == "administrateur"){ return true ;}
+            else {return false;}
+        }
+        else{
+            return false;
+        }
+
     }
 }
