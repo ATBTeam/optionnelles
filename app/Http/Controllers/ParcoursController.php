@@ -20,20 +20,20 @@ class ParcoursController extends Controller{
     //Fonction pour page création de parcours
     public function get_Create_Page(){
         $specialites = Specialite::all();
-        return view('ParcoursCreation',['specialites'=> $specialites]);
+        return view('parcours/ParcoursCreation',['specialites'=> $specialites]);
     }
 
     //Fonction pour page modifier parcours
     public function get_Update_Page($parcours){
         $specialites = Specialite::all();
-        return response()->view('ParcoursModification',['parcours'=> $parcours, 'specialites'=>$specialites]);
+        return response()->view('parcours/ParcoursModification',['parcours'=> $parcours, 'specialites'=>$specialites]);
     }
 
 
     //Fonction pour page liste des parcours
     public function get_List_Page(){
         $parcours = Parcours::all();
-        return response()->view('ParcoursList',['parcours'=>  $parcours]);
+        return response()->view('parcours/ParcoursList',['parcours'=>  $parcours]);
     }
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////OPERATIONS CRUD (post)
@@ -86,7 +86,7 @@ class ParcoursController extends Controller{
     //Fonction pour page confirmation supression  parcours
     public function post_Delete_Page(Request $request){
         $parcours = Parcours::findOrFail($request->input('id_parcours'));
-        return response()->view('ParcoursSuppression',['parcours'=> $parcours]);
+        return response()->view('parcours/ParcoursSuppression',['parcours'=> $parcours]);
     }
 
     //Fonction pour supprimer spécialité

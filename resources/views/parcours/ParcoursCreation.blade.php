@@ -5,7 +5,7 @@
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">AJOUT DE PARCOURS
-                {!! Form::open(['url' => 'parcours/add']) !!}
+                {!! Form::open(['url' => 'admin/parcours/add']) !!}
             </div>
             <div class="panel-body">
                 <div class="form-group {!! $errors->has('intitule') ? 'has-error' : '' !!}">
