@@ -24,6 +24,6 @@ class Helpers {
            $user = Auth::user();
            return $user;
         }
-        else return response()->view('accueil/accueilEtud');
+        else return response()->view('accueil/accueilVisit');
     }
 }
