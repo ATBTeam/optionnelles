@@ -49,8 +49,10 @@
                         {!! Form::password('mdp2', ['class' => 'form-control', 'placeholder' => 'votre nouveau mot de passe']) !!}
                         {!! $errors->first('mdp2', '<small class="help-block">:message</small>') !!}
                     </div>
-                    {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
-                    {!! Form::close() !!}
+                    @if ($user->profil->intitule=='administrateur')
+                        {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
+                        {!! Form::close() !!}
+                    @endif
                 </div>
             @endif
         </div>
