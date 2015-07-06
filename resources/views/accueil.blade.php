@@ -5,22 +5,26 @@
 <div class="row">
     <div class="col-sm-5 col-md-3">
         <div class="thumbnail">
-            <img src="/optionnelles/public/img/adobe-pdf-logo.jpg" width="100">
+            <a href="/optionnelles/public/doc/pdf_doc_example.pdf" TARGET="_blank">
+                <img src="/optionnelles/public/img/adobe-pdf-logo.jpg" width="100">
+            </a>
             <div class="caption">
                 <h3>MIAGE1</h3>
                 <p>Programme de la MIAGE 1 et description des UEs</p>
-                <p><a href="/optionnelles/public/doc/pdf_doc_example.pdf" class="btn btn-primary" TARGET="_blank" role="button">Download</a>
+                <p><a href="/optionnelles/public/doc/pdf_doc_example.pdf" class="btn btn-primary" TARGET="_blank" role="button">Ouvrir</a>
                 </p>
             </div>
         </div>
     </div>
     <div class="col-sm-5 col-md-3">
         <div class="thumbnail">
-            <img src="/optionnelles/public/img/adobe-pdf-logo.jpg" width="100">
+            <a href="/optionnelles/public/doc/pdf_doc_example.pdf" TARGET="_blank">
+                <img src="/optionnelles/public/img/adobe-pdf-logo.jpg" width="100">
+            </a>
             <div class="caption">
                 <h3>MIAGE2</h3>
                 <p>Programme de la MIAGE 2 et description des UEs</p>
-                <p><a href="/optionnelles/public/doc/pdf_doc_example.pdf" class="btn btn-primary" TARGET="_blank" role="button">Download</a>
+                <p><a href="/optionnelles/public/doc/pdf_doc_example.pdf" class="btn btn-primary" TARGET="_blank" role="button">Ouvrir</a>
                 </p>
             </div>
         </div>
