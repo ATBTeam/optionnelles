@@ -13,7 +13,7 @@
 
     <div class="gestion_user">
         <h2>PAGE DE GESTION DES GROUPES</h2>
-        <a href="add">Créer un nouveau grouper</a>
+        <a href="{!! url('admin/groupe/add') !!}">Créer un nouveau grouper</a>
         @if(isset($groupes))
             <table class="bordered">
                 <thead>
@@ -33,12 +33,12 @@
                         <td>{{ $groupe->intitule }}</td>
                         <td>{{ $groupe->description }}</td>
                         <td>{{ $groupe->parcours->intitule }}</td>
-                        <td><a href="update/{{ $groupe->id }}" >modifier</a></td>
-                        <td><a href="delete/{{ $groupe->id }}" >supprimer</a></td>
+                        <td><a href="admin/groupe/update/{{$groupe->id}}" >modifier</a></td>
+                        <td><a href="admin/groupe/delete/{{$groupe->id}}" >supprimer</a></td>
                     </tr>
                 @endforeach
             </table>
         @endif
-        <a href="add">Créer un nouveau groupe</a>
+        <a href="{!! url('admin/groupe/add')!!}">Créer un nouveau groupe</a>
     </div>
 @stop
