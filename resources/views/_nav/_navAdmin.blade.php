@@ -19,7 +19,7 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li>logged as : {{ Helpers::GetCurrentUser()->login }}
+                <li>logged as : </li>
                 <li><a href="{!! url('compte/logout') !!}">Logout</a></li>
             </ul>
         </div>

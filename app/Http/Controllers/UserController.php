@@ -85,6 +85,7 @@ class UserController extends Controller{
                 case 'professeur': return response()->view('accueil/accueilProf');
                 case 'secrétariat': return response()->view('accueil/accueilSecr');
                 case 'étudiant': return response()->view('accueil/accueilEtud');
+                default : return response()->view('Auth/login');
             }
         }
         return response()->view('Auth/login');

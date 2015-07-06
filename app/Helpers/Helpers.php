@@ -24,6 +24,7 @@ class Helpers {
            $user = Auth::user();
            return $user;
         }
-        else return response()->view('accueil/accueilVisit');
+        //else return redirect('/');
+        else return null;
     }
 }
