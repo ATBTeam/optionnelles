@@ -56,7 +56,11 @@ Route::post('admin/groupe/update/{id}',['middleware' => 'auth', 'uses' => 'Group
 Route::get('admin/groupe/delete/{id}',['middleware' => 'auth', 'uses' => 'GroupeController@delete_groupe']);
 Route::get('admin/groupe/show',['middleware' => 'auth', 'uses' => 'GroupeController@show_groupe']);
 
-//gestion des spécialités : en cours
+//formulaire de concact : OK et testé => paramétrer la bonne @mail de l'admin dans le controler, config\mail.php, .env (server smtp)
+Route::get('contact', 'ContactController@getForm');
+Route::post('contact/form', 'ContactController@postForm');
+
+//gestion des spécialités : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
 Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
 Route::post('specialite/add', 'SpecialiteController@post_Create'); // OK et testé
 Route::post('specialite/list/update', 'SpecialiteController@post_Update_Page'); // OK et testé
@@ -66,11 +70,7 @@ Route::post('specialite/deleteCancel', 'SpecialiteController@post_DeleteCancel')
 Route::post('specialite/deleteConfirm/{id}', 'SpecialiteController@post_DeleteConfirm'); // OK et testé
 Route::get('specialite/list', 'SpecialiteController@get_List_Page'); // OK et testé
 
-//formulaire de concact : en cours => paramétrer la bonne @mail de l'admin dans le controler, config\mail.php, .env (server smtp)
-Route::get('contact', 'ContactController@getForm');
-Route::post('contact/form', 'ContactController@postForm');
-
-//gestion des parcours : en cours à développer
+//gestion des parcours : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
 Route::get('parcours/add', 'ParcoursController@get_Create_Page'); // OK et testé
 Route::post('parcours/add', 'ParcoursController@post_Create');// OK et testé
 Route::post('parcours/list/update', 'ParcoursController@post_Update_Page');// OK et testé
