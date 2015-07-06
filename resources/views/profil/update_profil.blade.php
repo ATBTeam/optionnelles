@@ -1,24 +1,35 @@
-<form method="POST" action="{{ $profil->id }}">
-    {!! csrf_field() !!}
+@extends('template')
 
-    <div>
-        Intitulé
-        <input type="text" name="intitule" value="{{ $profil->intitule }}" placeholder="Intitulé de profil">
-        @if ($errors->has('intitule')) <p>{{ $errors->first('intitule') }}</p> @endif
-        @if (isset($erreurs))
-            @if (count($erreurs) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($erreurs as $erreur)
-                            <li>{{ $erreur }}</li>
-                        @endforeach
-                    </ul>
+@section('contenu')
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">PAGE DE MISE A JOUR D'UN PROFIL
+                {!! Form::open(['url' => 'admin/profil/update/'.$profil->id]) !!}
+            </div>
+
+
+            @if(isset($profil))
+                <div class="panel-heading">Informations du profil</div>
+                <div class="panel-body">
+                    <div class="form-group {!! $errors->has('intitule') ? 'has-error' : '' !!}">
+                        Intitulé :
+                        {!! Form::text('intitule', $profil->intitule, ['class' => 'form-control']) !!}
+                        {!! $errors->first('intitule', '<small class="help-block">:message</small>') !!}
+                        @if (isset($erreurs))
+                            @if (count($erreurs) > 0)
+                                @foreach ($erreurs as $erreur)
+                                    <small style="color:#a94442;" class="help-block">{{ $erreur }}</small>
+                                @endforeach
+                            @endif
+                        @endif
+                    </div>
+
+                    {!! Form::submit('Mettre à jour !', ['class' => 'btn btn-info pull-right']) !!}
+                    {!! Form::close() !!}
                 </div>
             @endif
-        @endif
-    </div>
 
-    <div>
-        <button type="submit">Ajouter</button>
+        </div>
     </div>
-</form>
+@stop

@@ -330,7 +330,7 @@ class UserController extends Controller{
                 'prenom' => 'required',
                 'mail' => 'required',
                 'login' => 'required|min:8',
-                'mdp' => 'required|min:8',
+                'mdp2' => 'required|min:8',
                 'profil' => 'exists:profil,id'
             ]);
 
@@ -355,17 +355,22 @@ class UserController extends Controller{
                 }
             }
 
+            $user->parcours_id=null;
+            $user->groupe_id = null;
+            $user->profil_id = null;
+
             $user->nom = $request->input('nom');
             $user->prenom = $request->input('prenom');
             $user->mail = $request->input('mail');
             $user->login =  $request->input('login');
-            $user->mdp = $request->input('mdp');
+            $user->mdp = $request->input('mdp2');
             if($request->input('actif')==1)
                 $user->actif = $request->input('actif');
             else
                 $user->actif = 0;
             if($request->input('parcours') != 0)
                 $user->parcours_id = $request->input('parcours');
+
             if($request->input('groupe') != 0){
                 $user->groupe_id = $request->input('groupe');
                 $user->parcours_id = Groupe::find($request->input('groupe'))->parcours->id;

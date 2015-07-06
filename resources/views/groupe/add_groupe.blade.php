@@ -1,40 +1,50 @@
-<form method="POST" action="add">
-    {!! csrf_field() !!}
+@extends('template')
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@section('contenu')
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">PAGE DE CREATION D'UN NOUVEAU GROUPE
+                {!! Form::open(['url' => 'admin/groupe/add']) !!}
+            </div>
 
-    <div>
-        Année suivie
-        <select name="parcours">
-            <option value="0">Choisir un parcours</option>
-            @if (isset($parcours))
-                @foreach ($parcours as $parc)
-                    @if(old('parcours') == $parc->id)
-                        <option selected value="{{ $parc->id }}">{{ $parc->intitule }}</option>
-                    @else
-                        <option value="{{ $parc->id }}">{{ $parc->intitule }}</option>
-                    @endif
-                @endforeach
+            @if(isset($parcours))
+                <div class="panel-heading">Année suivie</div>
+                <div class="panel-body">
+                    <div class="form-group {!! $errors->has('parcours') ? 'has-error' : '' !!}">
+                        <select name="parcours">
+                            <option value="0">Choisir un parcours</option>
+                            @if (isset($parcours))
+                                @foreach ($parcours as $parc)
+                                    @if(old('parcours') == $parc->id)
+                                        <option selected value="{{ $parc->id }}">{{ $parc->intitule }}</option>
+                                    @else
+                                        <option value="{{ $parc->id }}">{{ $parc->intitule }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </select>
+                        @if ($errors->has('parcours')) <small class="help-block">{{ $errors->first('parcours') }}</small> @endif
+                    </div>
+                </div>
             @endif
-        </select>
-        @if ($errors->has('parcours')) <p>{{ $errors->first('parcours') }}</p> @endif
-    </div>
 
-    <div>
-        Intitulé
-        <input type="text" name="intitule" value="{{ old('intitule') }}" placeholder="Intitulé du groupe">
-        @if ($errors->has('intitule')) <p>{{ $errors->first('intitule') }}</p> @endif
-    </div>
+            <div class="panel-heading">Vos informations</div>
+            <div class="panel-body">
+                <div class="form-group {!! $errors->has('intitule') ? 'has-error' : '' !!}">
+                    Intitulé :
+                    {!! Form::text('intitule', null, ['class' => 'form-control', 'placeholder' => 'intitulé du groupe']) !!}
+                    {!! $errors->first('intitule', '<small class="help-block">:message</small>') !!}
+                </div>
+                <div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
+                    Description :
+                    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'description du groupe']) !!}
+                    {!! $errors->first('description', '<small class="help-block">:message</small>') !!}
+                </div>
 
-    <div>
-        <button type="submit">Ajouter</button>
+                {!! Form::submit('Enregistrer !', ['class' => 'btn btn-info pull-right']) !!}
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
-</form>
+@stop

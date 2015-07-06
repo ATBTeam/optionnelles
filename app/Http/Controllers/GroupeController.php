@@ -37,10 +37,12 @@ class GroupeController extends Controller
         if($user->profil->intitule == "administrateur"){
             $this->validate($request, [
                 'intitule' => 'required|unique:groupe',
+                'description' => 'required',
                 'parcours' => 'exists:parcours,id'
             ]);
             $groupe = new Groupe();
             $groupe->intitule = $request->input('intitule');
+            $groupe->description = $request->input('description');
             $groupe->parcours_id = $request->input('parcours');
             $groupe->save();
             return redirect('admin/groupe/show');
@@ -75,6 +77,7 @@ class GroupeController extends Controller
             $erreurs = new Collection();
             $this->validate($request, [
                 'intitule' => 'required',
+                'description' => 'required',
                 'parcours' => 'exists:parcours,id'
             ]);
 
@@ -91,6 +94,7 @@ class GroupeController extends Controller
             }
 
             $groupe->intitule = $request->input('intitule');
+            $groupe->description = $request->input('description');
             $groupe->parcours_id = $request->input('parcours');
             $parcours = Parcours::all();
 

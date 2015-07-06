@@ -15,6 +15,7 @@ class CreateGroupeTable extends Migration
         Schema::create('groupe', function (Blueprint $table) {
             $table->increments('id');
             $table->string('intitule', 50);
+            $table->string('description', 500);
             $table->integer('parcours_id')->unsigned();
 
             $table->foreign('parcours_id')
