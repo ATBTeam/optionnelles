@@ -5,9 +5,10 @@
     <hr/>
 
     @foreach($choix as $c)
-        <article>
-            <div class="body">{{ $c->ue->intitule }}</div>
-            <div class="body">{!! $c->user->prenom !!} {!! $c->user->nom !!}</div>
-        </article>
+        <ul>
+            <li>{!! $c->user->prenom !!} {!! $c->user->nom !!} - {{ $c->ue->intitule }}</li>
+        </ul>
     @endforeach
+    {!! $choix->render() !!}
+
 @stop

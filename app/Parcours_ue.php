@@ -22,4 +22,9 @@ class Parcours_ue extends Model
     {
         return $this->belongsTo('App\Ue'); // this matches the Eloquent model
     }
+
+    public function scopeParcoursUe($query, $parcours_id, $ue_id)
+    {
+        return $query->where('parcours_id', $parcours_id)->where('ue_id', $ue_id);
+    }
 }

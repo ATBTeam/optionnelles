@@ -17,9 +17,9 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/optionnelles/public/specialite/list">Spécialités</a></li>
+                <li><a href="{!! url('specialite/list') !!}">Spécialités</a></li>
 
-                <li><a href="/optionnelles/public/parcours/list">Parcours</a></li>
+                <li><a href="{!! url('parcours/list') !!}">Parcours</a></li>
             </ul>
         </div>
     </div>
