@@ -42,118 +42,61 @@ class ChoixController extends Controller
         $ues_s1 = $parcours->ues()->where('semestre', 1)->get();
         $ues_s2 = $parcours->ues()->where('semestre', 2)->get();
 
-        return view('choix.create', compact('parcours', 'ues_s1', 'ues_s2'));
+        $ues = array($ues_s1, $ues_s2);
+        return view('choix.create', compact('parcours', 'ues'));
     }
 
     public function store(Request $request)
     {
-        // Récupération du nombre d'optionnelles pour le parcours de l'utilisateur
         // Todo : Auth::user()->id;
         $user = User::find($this->userId);
         $parcours = $user->parcours()->first();
-
-        // TODO : gérer les semestres
-        $nbopt_s1 = $parcours->nb_opt_s1;
-        $nbopt_s2 = $parcours->nb_opt_s2;
-
-        // On gère le semestre 1 et le semestre 2 également
-        // Semestre 1 --------------------------------------------------------------
-        // S'il y a plus de choix que prévu, retour au questionnaire sans validation
-        if (count($request->input('choix_s1')) > $nbopt_s1) {
-            \Session::flash('trop_choix_s1', 'Vous ne pouvez faire que ' . $nbopt_s1 . ' choix');
-            return redirect('choix/choisir')->withInput();
-        }
-        // Récupération des choix précédents éventuels
-        $choixPrecedents_s1 = Choix::join('ue', 'ue.id', '=', 'choix.ue_id')
-            ->where('user_id', $user->id)
-            ->where('semestre', 1)
-            ->select('ue_id')
-            ->get();
-        $choixPrecedents_s2 = Choix::join('ue', 'ue.id', '=', 'choix.ue_id')
-            ->where('user_id', $user->id)
-            ->where('semestre', 2)
-            ->select('ue_id')
-            ->get();
-
-        //dd($choixPrecedents_s1);
-        //$choixPrecedents_s1 = Choix::select('ue_id')->where('user_id', $user->id)->get();
         $plusDePlace = false;
-        // Parcours
-        foreach ((array) $request->input('choix_s1') as $ue_id) {
-            // Si ce choix n'est pas encore effectué, on le sauvegarde à moins qu'il n'y ait plus de place
-            if (! $choixPrecedents_s1->contains('ue_id', $ue_id)) {
-                if ($this->estPlein($user->parcours()->first()->id, $ue_id)) {
-                    $plusDePlace = true;
-                    \Session::flash('sature' . $ue_id, 'Plus de place disponible !');
-                } else {
-                    $choix = new Choix();
-                    $choix->ue_id = $ue_id;
-                    $choix->user_id = $user->id;
-                    $choix->parcours_id = $user->parcours()->first()->id;
 
-                    $choix->date_choix = date('Y-m-d H:i:s');
-                    $choix->save();
+        for ($semestre = 1; $semestre <= 2; ++$semestre) {
+            $nbopt = ($semestre == 1) ? $parcours->nb_opt_s1 : $parcours->nb_opt_s2;
+
+            if (count($request->input('choix_s' . $semestre)) > $nbopt) {
+                \Session::flash('trop_choix_s' . $semestre, 'Vous ne pouvez faire que ' . $nbopt . ' choix');
+                return redirect('choix/choisir')->withInput();
+            }
+
+            $choixPrecedents = Choix::join('ue', 'ue.id', '=', 'choix.ue_id')
+                ->where('user_id', $user->id)
+                ->where('semestre', $semestre)
+                ->select('ue_id')
+                ->get();
+
+            // Parcours
+            foreach ((array) $request->input('choix_s' . $semestre) as $ue_id) {
+                // Si ce choix n'est pas encore effectué, on le sauvegarde à moins qu'il n'y ait plus de place
+                if (! $choixPrecedents->contains('ue_id', $ue_id)) {
+                    if ($this->estPlein($user->parcours()->first()->id, $ue_id)) {
+                        $plusDePlace = true;
+                        \Session::flash('sature' . $ue_id, 'Plus de place disponible !');
+                    } else {
+                        $choix = new Choix();
+                        $choix->ue_id = $ue_id;
+                        $choix->user_id = $user->id;
+                        $choix->parcours_id = $user->parcours()->first()->id;
+
+                        $choix->date_choix = date('Y-m-d H:i:s');
+                        $choix->save();
+                    }
+                } else // sinon on ne fait pas d'opération en base mais on supprime du tableau
+                {
+                    $choixPrecedents = $choixPrecedents->filter(function ($item) use ($ue_id) {
+                        return $item->ue_id != $ue_id;
+                    });
                 }
-            } else // sinon on ne fait pas d'opération en base mais on supprime du tableau
-            {
-                $choixPrecedents_s1 = $choixPrecedents_s1->filter(function ($item) use ($ue_id) {
-                    return $item->ue_id != $ue_id;
-                });
             }
-        }
-        // Parcours pour la suppression des choix précédents décochés
-        if ($choixPrecedents_s1->count() > 0) {
-            foreach ($choixPrecedents_s1 as $vieuxChoix) {
-                $choix = Choix::where('ue_id', $vieuxChoix->ue_id)->where('user_id', $user->id);
-                $choix->delete();
-            }
-        }
-
-        // Semestre 2 --------------------------------------------------------------
-        // S'il y a plus de choix que prévu, retour au questionnaire sans validation
-        if (count($request->input('choix_s2')) > $nbopt_s2) {
-            \Session::flash('trop_choix_s2', 'Vous ne pouvez faire que ' . $nbopt_s2 . ' choix');
-            return redirect('choix/choisir')->withInput();
-        }
-        // Récupération des choix précédents éventuels
-        //$choixPrecedents_s2 = Choix::select('ue_id')->where('user_id', $user->id)->get();
-        // Parcours
-        foreach ((array) $request->input('choix_s2') as $ue_id) {
-            // Si ce choix n'est pas encore effectué, on le sauvegarde à moins qu'il n'y ait plus de place
-            if (! $choixPrecedents_s2->contains('ue_id', $ue_id)) {
-                if ($this->estPlein($user->parcours()->first()->id, $ue_id)) {
-                    $plusDePlace = true;
-                    \Session::flash('sature' . $ue_id, 'Plus de place disponible !');
-                } else {
-                    $choix = new Choix();
-                    $choix->ue_id = $ue_id;
-                    $choix->user_id = $user->id;
-                    $choix->parcours_id = $user->parcours()->first()->id;
-
-                    $choix->date_choix = date('Y-m-d H:i:s');
-                    $choix->save();
+            // Parcours pour la suppression des choix précédents décochés
+            if ($choixPrecedents->count() > 0) {
+                foreach ($choixPrecedents as $vieuxChoix) {
+                    $choix = Choix::where('ue_id', $vieuxChoix->ue_id)->where('user_id', $user->id);
+                    $choix->delete();
                 }
-            } else // sinon on ne fait pas d'opération en base mais on supprime du tableau
-            {
-                $choixPrecedents_s2 = $choixPrecedents_s2->filter(function ($item) use ($ue_id) {
-                    return $item->ue_id != $ue_id;
-                });
             }
-        }
-        // Parcours pour la suppression des choix précédents décochés
-        if ($choixPrecedents_s2->count() > 0) {
-            foreach ($choixPrecedents_s2 as $vieuxChoix) {
-                $choix = Choix::where('ue_id', $vieuxChoix->ue_id)->where('user_id', $user->id);
-                $choix->delete();
-            }
-        }
-        // S'il y en a plus que prévu, retour au questionnaire sans validation
-        if (count($request->input('choix_s2')) > $nbopt_s1) {
-
-            return redirect('choix/choisir')->withErrors(array(
-                'choix_s1',
-                'Vous ne pouvez faire que ' . $nbopt_s2 . ' choix'
-            ))->withInput();
         }
 
         if ($plusDePlace) {
