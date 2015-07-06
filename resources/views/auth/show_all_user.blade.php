@@ -13,7 +13,7 @@
 
     <div class="gestion_user">
         <h2>PAGE DE GESTION DES UTILISATEURS</h2>
-        <a href="add">Créer un nouveau utilisateur</a>
+        <a href="user/add">Créer un nouveau utilisateur</a>
         @if(isset($users))
             <table class="bordered">
                 <thead>
@@ -54,16 +54,16 @@
                         @endif
 
                         @if($user->actif==1)
-                            <td><a href="active/{{ $user->id }}" >activé</a></td>
+                            <td><a href="user/active/{{ $user->id }}" >activé</a></td>
                         @else
-                            <td><a href="active/{{ $user->id }}" >pas activé</a></td>
+                            <td><a href="user/active/{{ $user->id }}" >pas activé</a></td>
                         @endif
-                        <td><a href="update/{{ $user->id }}" >modifier</a></td>
-                        <td><a href="delete/{{ $user->id }}" >supprimer</a></td>
+                        <td><a href="user/update/{{ $user->id }}" >modifier</a></td>
+                        <td><a href="user/delete/{{ $user->id }}" >supprimer</a></td>
                     </tr>
                 @endforeach
             </table>
         @endif
-        <a href="add">Créer un nouveau utilisateur</a>
+        <a href="user/add">Créer un nouveau utilisateur</a>
     </div>
 @stop
