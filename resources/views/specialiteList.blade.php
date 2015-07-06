@@ -4,7 +4,7 @@
     <br>
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
-            <div class="panel-heading">Liste des Spécialités</div>
+            <div class="panel-heading">LISTE DES SPECIALITES</div>
             <div class="panel-body">
                 {!! Form::open(['url' => 'specialite/list/update']) !!}
                 <div>

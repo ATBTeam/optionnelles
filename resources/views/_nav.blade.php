@@ -1,20 +1,25 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" abp="1">
-    <div class="container" abp="2">
-        <div class="navbar-header" abp="3">
-            <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar" type="button" abp="4" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only" abp="5">Toggle navigation</span>
-                <span class="icon-bar" abp="6"></span>
-                <span class="icon-bar" abp="7"></span>
-                <span class="icon-bar" abp="8"></span>
+<nav <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" abp="9">Project name</a>
+            <a class="navbar-brand" href="/optionnelles/public">UE Optionnelles</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/optionnelles/public/specialite/list">Spécialités</a></li>
 
-        <div class="collapse navbar-collapse" id="navbar" abp="10">
-            <ul class="nav navbar-nav" abp="11">
-                <li class="active" abp="12"><a href="#" abp="13">Home</a></li>
-                <li abp="14"><a href="#about" abp="15">About</a></li>
-                <li abp="16"><a href="#contact" abp="17">Contact</a></li>
+                <li><a href="/optionnelles/public/parcours/list">Parcours</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/optionnelles/public/specialite/list">Spécialités</a></li>
+
+                <li><a href="/optionnelles/public/parcours/list">Parcours</a></li>
             </ul>
         </div>
     </div>

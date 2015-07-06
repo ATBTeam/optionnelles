@@ -13,11 +13,13 @@
     <![endif]-->
     <style> textarea { resize: none; }
     body {
+
         padding-top: 60px;
     }</style>
 </head>
 <body>
 @include('_nav')
 @yield('contenu')
+
 </body>
 </html>

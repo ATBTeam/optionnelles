@@ -57,8 +57,8 @@ Route::get('admin/groupe/delete/{id}',['middleware' => 'auth', 'uses' => 'Groupe
 Route::get('admin/groupe/show',['middleware' => 'auth', 'uses' => 'GroupeController@show_groupe']);
 
 //formulaire de concact : OK et testé => paramétrer la bonne @mail de l'admin dans le controler, config\mail.php, .env (server smtp)
-Route::get('contact', 'ContactController@getForm');
-Route::post('contact/form', 'ContactController@postForm');
+Route::get('contact', 'ContactController@getForm');//OK et testé
+Route::post('contact/form', 'ContactController@postForm'); // OK et testé
 
 //gestion des spécialités : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
 Route::get('specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
