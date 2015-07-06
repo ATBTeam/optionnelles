@@ -178,7 +178,7 @@ class UserController extends Controller{
 
         $user->save();
 
-        return redirect('compte/show');
+        return redirect('compte');
     }
 
     //Fonction pour reinitialiser mot de passe
@@ -307,7 +307,7 @@ class UserController extends Controller{
                     $enseigner->save();
                 }
             }
-            return redirect('admin/user/show');
+            return redirect('admin/user');
         }
         return "Vous êtes pas administrateur";
     }
@@ -415,7 +415,7 @@ class UserController extends Controller{
                     $enseigner->save();
                 }
             }
-            return redirect('admin/user/show');
+            return redirect('admin/user');
         }
         return "Vous êtes pas administrateur";
     }
@@ -426,7 +426,7 @@ class UserController extends Controller{
         if($user->profil->intitule == "administrateur"){
             $user = User::find($id);
             $user->delete();
-            return redirect('admin/user/show');
+            return redirect('admin/user');
         }
         return "Vous êtes pas administrateur";
     }
@@ -443,7 +443,7 @@ class UserController extends Controller{
             //Enovyer une notification par mail au utilisateur
 
 
-            return redirect('admin/user/show');
+            return redirect('admin/user');
         }
         return "Vous êtes pas administrateur";
     }

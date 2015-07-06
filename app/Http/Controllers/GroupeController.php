@@ -45,7 +45,7 @@ class GroupeController extends Controller
             $groupe->description = $request->input('description');
             $groupe->parcours_id = $request->input('parcours');
             $groupe->save();
-            return redirect('admin/groupe/show');
+            return redirect('admin/groupe');
         }
         return "Vous êtes pas administrateur";
     }
@@ -56,7 +56,7 @@ class GroupeController extends Controller
         if($user->profil->intitule == "administrateur"){
             $groupe = Groupe::find($id);
             $groupe->delete();
-            return redirect('admin/groupe/show');
+            return redirect('admin/groupe');
         }
         return "Vous êtes pas administrateur";
     }
@@ -103,7 +103,7 @@ class GroupeController extends Controller
             }
 
             $groupe->save();
-            return redirect('admin/groupe/show');
+            return redirect('admin/groupe');
         }
         return "Vous êtes pas administrateur";
     }
