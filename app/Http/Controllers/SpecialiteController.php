@@ -61,10 +61,21 @@ class SpecialiteController extends Controller{
         $specialite = Specialite::findOrFail($request->input('specialite'));
         return $this->get_Update_Page($specialite);
     }
+    //Fonction pour page confirmation supression  specialite
+    public function post_Delete_Page(Request $request){
+        $specialite = Specialite::findOrFail($request->input('id_specialite'));
+        return response()->view('SpecialiteSuppression',['specialite'=> $specialite]);
+    }
+
     //Fonction pour supprimer spécialité
-    public function Delete($id){
+    public function post_DeleteConfirm($id){
+        $text = Specialite::findOrFail($id)->intitule. " à été supprimé";
         Specialite::destroy($id);
-        return "page de validation spécialité supprimée";
+        return view("confirmation",['text'=>$text]);
+    }
+    public function post_DeleteCancel(){
+        $text= "Supression annulée";
+        return view("confirmation",['text'=>$text]);
     }
 
 }

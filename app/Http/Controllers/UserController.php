@@ -28,7 +28,7 @@ class UserController extends Controller{
 
     //Fonction pour la page d'accueil
     public function accueil_page(){
-        return "page accueil";
+        return view('accueil');
     }
 
     //Etudiant
