@@ -5,7 +5,7 @@
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">PAGE DE CONSULTATION VOTRE COMPTE
-                {!! Form::open(['url' => 'compte/show']) !!}
+                {!! Form::open(['url' => 'compte']) !!}
             </div>
 
             @if(isset($user))

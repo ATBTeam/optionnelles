@@ -17,8 +17,8 @@ Route::post('compte/register','UserController@register_post');
 Route::get('compte/login','UserController@login_get');
 Route::post('compte/login','UserController@login_post');
 Route::get('compte/logout','UserController@logout');
-Route::get('compte/show',['middleware' => 'auth', 'uses' => 'UserController@show_compte_get']);
-Route::post('compte/show',['middleware' => 'auth', 'uses' => 'UserController@show_compte_post']);
+Route::get('compte',['middleware' => 'auth', 'uses' => 'UserController@show_compte_get']);
+Route::post('compte',['middleware' => 'auth', 'uses' => 'UserController@show_compte_post']);
 Route::get('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
 Route::post('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
 Route::get('compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
@@ -35,7 +35,7 @@ Route::post('admin/compte/register','UserController@admin_register_post');
 Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
 Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des utilisateurs => Done
-Route::get('admin/user/show',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
+Route::get('admin/user',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
 Route::get('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_get']);
 Route::post('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_post']);
 Route::get('admin/user/delete/{id}',['middleware' => 'auth', 'uses' => 'UserController@delete_user']);
@@ -48,14 +48,14 @@ Route::post('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilControl
 Route::get('admin/profil/update/{id}',['middleware' => 'auth', 'uses' => 'ProfilController@update_profil_get']);
 Route::post('admin/profil/update/{id}',['middleware' => 'auth', 'uses' => 'ProfilController@update_profil_post']);
 Route::get('admin/profil/delete/{id}',['middleware' => 'auth', 'uses' => 'ProfilController@delete_profil']);
-Route::get('admin/profil/show',['middleware' => 'auth', 'uses' => 'ProfilController@show_profil']);
+Route::get('admin/profil',['middleware' => 'auth', 'uses' => 'ProfilController@show_profil']);
 //Gérer des groupes => Done
 Route::get('admin/groupe/add',['middleware' => 'auth', 'uses' => 'GroupeController@add_groupe_get']);
 Route::post('admin/groupe/add',['middleware' => 'auth', 'uses' => 'GroupeController@add_groupe_post']);
 Route::get('admin/groupe/update/{id}',['middleware' => 'auth', 'uses' => 'GroupeController@update_groupe_get']);
 Route::post('admin/groupe/update/{id}',['middleware' => 'auth', 'uses' => 'GroupeController@update_groupe_post']);
 Route::get('admin/groupe/delete/{id}',['middleware' => 'auth', 'uses' => 'GroupeController@delete_groupe']);
-Route::get('admin/groupe/show',['middleware' => 'auth', 'uses' => 'GroupeController@show_groupe']);
+Route::get('admin/groupe',['middleware' => 'auth', 'uses' => 'GroupeController@show_groupe']);
 
 //formulaire de concact : OK et testé => paramétrer la bonne @mail de l'admin dans le controler, config\mail.php, .env (server smtp)
 Route::get('contact', 'ContactController@getForm');//OK et testé
