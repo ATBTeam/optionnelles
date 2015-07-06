@@ -105,7 +105,7 @@ class UserController extends Controller{
                 case 'étudiant': return response()->view('accueil/accueilEtud');
             }
         }else{
-            return response()->view('auth/login', ['actif'=> $user->actif]);
+            return response()->view('login', ['actif'=> $user->actif]);
         }
     }
 
