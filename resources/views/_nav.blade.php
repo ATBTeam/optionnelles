@@ -12,8 +12,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{!! url('specialite/list') !!}">Spécialités</a></li>
-
                 <li><a href="{!! url('parcours/list') !!}">Parcours</a></li>
+                <li><a href="{!! url('ue') !!}">UE</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

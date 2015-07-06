@@ -33,6 +33,9 @@
                     <input type="hidden" name="id_specialite" id="id_specialite" value="{{$specialites[0]->id}}">
                 @endif
                 {!! Form::close() !!}
+                {!! Form::open(['url' => 'specialite/add', 'method'=>'GET']) !!}
+                {!! Form::submit('Ajouter', ['class' => 'btn btn-info pull-right']) !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
