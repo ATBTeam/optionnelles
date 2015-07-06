@@ -40,7 +40,7 @@ class ProfilController extends Controller
             $profil = new Profil();
             $profil->intitule = $request->input('intitule');
             $profil->save();
-            return redirect('admin/profil/show');
+            return redirect('admin/profil');
         }
         return "Vous êtes pas administrateur";
     }
@@ -51,7 +51,7 @@ class ProfilController extends Controller
         if($user->profil->intitule == "administrateur"){
             $profil = Profil::find($id);
             $profil->delete();
-            return redirect('admin/profil/show');
+            return redirect('admin/profil');
         }
         return "Vous êtes pas administrateur";
     }
@@ -92,7 +92,7 @@ class ProfilController extends Controller
             }
 
             $profil->save();
-            return redirect('admin/profil/show');
+            return redirect('admin/profil');
         }
         return "Vous êtes pas administrateur";
     }
