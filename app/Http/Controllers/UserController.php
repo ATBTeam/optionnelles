@@ -79,6 +79,14 @@ class UserController extends Controller{
 
     //Fonction pour se connecter ==> Done
     public function login_get(){
+        if(Auth::check()) {
+            switch(Auth::user()->profil->intitule){
+                case 'administrateur': return response()->view('accueil/accueilAdmin');
+                case 'professeur': return response()->view('accueil/accueilProf');
+                case 'secrétariat': return response()->view('accueil/accueilSecr');
+                case 'étudiant': return response()->view('accueil/accueilEtud');
+            }
+        }
         return response()->view('auth/login');
     }
     public function login_post(Request $request){
@@ -104,7 +112,7 @@ class UserController extends Controller{
     //Fonction pour se deconnecter  ==> Done
     public function logout(){
         Auth::logout();
-        return "/";
+        return redirect('/');
     }
 
     //Fonction pour afficher profil ==> Done

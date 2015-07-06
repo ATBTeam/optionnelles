@@ -5,7 +5,7 @@
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">PAGE D'INSCRIPTION
-                {!! Form::open(['url' => 'admin/compte/register']) !!}
+                {!! Form::open(['url' => 'admin/register']) !!}
             </div>
 
             @if (isset($profils))

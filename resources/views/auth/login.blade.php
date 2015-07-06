@@ -5,7 +5,7 @@
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">PAGE DE CONNECTION
-                {!! Form::open(['url' => 'compte/login']) !!}
+                {!! Form::open(['url' => 'login']) !!}
             </div>
             <div class="panel-body">
                 <div class="form-group {!! $errors->has('login') ? 'has-error' : '' !!}">
