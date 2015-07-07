@@ -33,8 +33,8 @@ class UserController extends Controller{
         {
             switch($user->profil->intitule){
                 case 'administrateur': return response()->view('accueil/accueilAdmin');
-                case 'professeur': return response()->view('accueil/accueilProf');
-                case 'secrétariat': return response()->view('accueil/accueilSecr');
+                case 'professeur': return redirect('listes_emargement/ue');
+                case 'secrétariat': return redirect('listes_emargement/ue');
                 case 'étudiant': return response()->view('accueil/accueilEtud');
                 default : return response()->view('accueil/accueilVisit');
             }
@@ -81,10 +81,10 @@ class UserController extends Controller{
     public function login_get(){
         if(Auth::check()) {
             switch(Auth::user()->profil->intitule){
-                case 'administrateur': return response()->view('accueil/accueilAdmin');
-                case 'professeur': return response()->view('accueil/accueilProf');
-                case 'secrétariat': return response()->view('accueil/accueilSecr');
-                case 'étudiant': return response()->view('accueil/accueilEtud');
+                case 'administrateur': return redirect('/');
+                case 'professeur': return redirect('/');
+                case 'secrétariat': return redirect('/');
+                case 'étudiant': return redirect('/');
                 default : return response()->view('Auth/login');
             }
         }
@@ -100,10 +100,10 @@ class UserController extends Controller{
         if ($user->actif == 1){
             Auth::login($user);
             switch($user->profil->intitule){
-                case 'administrateur': return response()->view('accueil/accueilAdmin');
-                case 'professeur': return response()->view('accueil/accueilProf');
-                case 'secrétariat': return response()->view('accueil/accueilSecr');
-                case 'étudiant': return response()->view('accueil/accueilEtud');
+                case 'administrateur': return redirect('/');
+                case 'professeur': return redirect('/');
+                case 'secrétariat': return redirect('/');
+                case 'étudiant': return redirect('/');
             }
         }else{
             return response()->view('auth/login', ['actif'=> $user->actif]);

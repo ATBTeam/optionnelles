@@ -7,9 +7,9 @@
  */
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Http\Requests\SpecialiteRequest;
+use App\Helpers\Helpers;
 use App\Ue;
+use App\User;
 
 class EmargementController extends Controller{
 
@@ -18,9 +18,20 @@ class EmargementController extends Controller{
 
     //Fonction pour page création de spécioalité
     public function get_UeUserList_Page(){
-        if(!(Helpers::isProf() || Helpers::isSecr()))return redirect('/');
-        //opération de création de csv
-        return view('specialite/specialiteCreation');
+        if(Helpers::isProf())
+        {
+            $user = Helpers::GetCurrentUser();
+            $Ues = $user->uesEnseignees;
+            return view('emargement/ueProf', ['Ues'=>$Ues]);
+        }
+        elseif(Helpers::isSecr())
+        {
+            $Ues = Ue::all();
+            return view('emargement/ueSecr', ['Ues'=>$Ues]);
+        }
+        else {return redirect('/');}
+
+
     }
 
 }
