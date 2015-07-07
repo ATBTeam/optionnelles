@@ -36,9 +36,12 @@ class UesController extends Controller
         if (! Helpers::isAdmin()) {
             return redirect('/');
         }
+        $ue = new Ue();
+        $parcours_ue = new Parcours_ue();
+
         $parcours = Parcours::all();
 
-        return response()->view('ues.create', compact('parcours'));
+        return response()->view('ues.create', compact('parcours', 'parcours_ue'));
 
         //return view('ues.create');
     }
