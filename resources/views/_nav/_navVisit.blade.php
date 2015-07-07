@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{!! url('contact') !!}">Spécialités</a></li>
+                <li><a href="{!! url('contact') !!}">CONTACT</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
