@@ -59,7 +59,7 @@ class UserController extends Controller{
     function sendPWDMail($user)
     {
         $mail = $user->mail;
-        $url = "localhost/optionnelles/public/compte/reinitialyze/".$user->id;
+        $url = url("compte/reinitialyze/".$user->id);
 
         Mail::send('emails.password', ['url'=> url($url)], function($message) use($mail)
         {
@@ -245,7 +245,7 @@ class UserController extends Controller{
         ]);
         $user = User::where('mail', '=', $request->input('mail'))->get()->first();
         $this->sendPWDMail($user);
-        return "Vérifiez votre email pour réinitialiser votre compte !";
+        return view("confirmpwd");
     }
 
 
