@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helpers;
 use App\Ue;
 use App\User;
+use App\Parcours;
 
 class EmargementController extends Controller{
 
@@ -28,6 +29,17 @@ class EmargementController extends Controller{
         {
             $Ues = Ue::all();
             return view('emargement/ueSecr', ['Ues'=>$Ues]);
+        }
+        else {return redirect('/');}
+
+
+    }
+
+    public function get_ParcoursUserList_Page(){
+        if(Helpers::isSecr())
+        {
+           $Parcours = Parcours::all();
+            return view('emargement/parcoursSecr', ['Parcours'=>$Parcours]);
         }
         else {return redirect('/');}
 

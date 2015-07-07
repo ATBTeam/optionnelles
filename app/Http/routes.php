@@ -100,3 +100,4 @@ Route::get('choix/user/{id}', 'ChoixController@getChoixParUser');
 
 //Affichage des listes d'émargement
 Route::get('listes_emargement/ue', 'EmargementController@get_UeUserList_Page');
+Route::get('listes_emargement/parcours', 'EmargementController@get_ParcoursUserList_Page');
