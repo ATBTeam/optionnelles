@@ -77,7 +77,7 @@ class EmargementController extends Controller{
     public function get_UeUserList_csv($id){
         if(!(Helpers::isProf()||Helpers::isSecr())) return redirect('/');
         $ue = Ue::FindOrFail($id);
-        $parcours_ue = $ue->parcours_ues;
+        $parcours_ue = $ue->parcours_ues->first();
 
         $output = fopen('php://memory', 'w');
         $filename=$ue->intitule.'.csv';
@@ -85,6 +85,7 @@ class EmargementController extends Controller{
         fputcsv($output, array($ue->intitule), ';');
         fputcsv($output, array('Nom', 'Prénom', '@mail', 'actif'),';');
         // loop over the rows, outputting them
+        return $parcours_ue->choixes;
         foreach($parcours_ue->choixes as $choix)
         {
             $user = $choix->user;
