@@ -85,7 +85,7 @@ class EmargementController extends Controller{
         fputcsv($output, array($ue->intitule), ';');
         fputcsv($output, array('Nom', 'Prénom', '@mail', 'actif'),';');
         // loop over the rows, outputting them
-        return $parcours_ue->choixes;
+
         foreach($parcours_ue->choixes as $choix)
         {
             $user = $choix->user;
