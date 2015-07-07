@@ -56,16 +56,12 @@ class UesController extends Controller
             $nbmax = $request->get('nbmax' . $parcours->id);
             if ($statut != 2 && !empty($nbmin) && !empty($nbmax)) {
                 $parc_ue = new Parcours_ue();
-                dd($parc_ue);
-                //$parc_ue = Parcours_ue::create();
                 $parc_ue->parcours_id = $parcours->id;
-                //$parc_ue->ue_id = $ue->id;
                 $parc_ue->est_optionnel = $statut;
                 $parc_ue->nbmin = $nbmin;
                 $parc_ue->nbmax  = $nbmax;
 
                 array_push($parcours_ue, $parc_ue);
-                //$parc_ue->save();
             }
 
             $ue->parcours_ues()->saveMany($parcours_ue);
