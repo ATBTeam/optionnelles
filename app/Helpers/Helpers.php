@@ -25,7 +25,6 @@ class Helpers {
            $user = Auth::user();
            return $user;
         }
-        //else return redirect('/');
         else return null;
     }
 

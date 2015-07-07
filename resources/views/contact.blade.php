@@ -1,12 +1,12 @@
-@extends('template.templateAdmin')
+@extends('template.template')
 
-@section('contenu')
+@section('contenu')&
     <br>
     <div class="col-sm-offset-3 col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">Contactez-moi</div>
             <div class="panel-body">
-                {!! Form::open(['url' => 'contact/form']) !!}
+                {!! Form::open(['url' => 'contact']) !!}
                 <div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
                     {!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Votre nom']) !!}
                     {!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
