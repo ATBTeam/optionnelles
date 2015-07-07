@@ -37,27 +37,54 @@
         @foreach($parcours as $parc)
             <tr>
                 <td>{{ $parc->intitule }}</td>
-                <td>
-                    <div class="form-group {!! $errors->has('statut' . $parc->id) ? 'has-error' : '' !!}">
-                        {!! Form::select('statut' . $parc->id, array('obligatoire', 'optionnelle', 'non enseignée' ), '2', ['class' => 'form-control'])
-                        !!}
-                        {!! $errors->first('statut' . $parc->id, '
+            @if($parcours_ues->contains('parcours_id' , $parc->id))
+                <?php
+                    $parc_ue = $parcours_ues->where('parcours_id', $parc->id)->first();
+                ?>
+                    <td>
+                        <div class="form-group {!! $errors->has('statut' . $parc->id) ? 'has-error' : '' !!}">
+                            {!! Form::select('statut' . $parc->id, array('obligatoire', 'optionnelle', 'non enseignée' ), $parc_ue->est_optionnel, ['class' => 'form-control'])
+                            !!}
+                            {!! $errors->first('statut' . $parc->id, '
+                            <small class="help-block">:message</small>
+                            ') !!}
+                        </div>
+                    </td>
+                    <td>
+                        {!! Form::text('nbmin' . $parc->id, $parc_ue->nbmin, ['class' => 'form-control', 'placeholder' => 'nbmin']) !!}
+                        {!! $errors->first('nbmin' . $parc->id, '
                         <small class="help-block">:message</small>
                         ') !!}
-                    </div>
-                </td>
-                <td>
-                    {!! Form::text('nbmin' . $parc->id, null, ['class' => 'form-control', 'placeholder' => 'nbmin']) !!}
-                    {!! $errors->first('nbmin' . $parc->id, '
-                    <small class="help-block">:message</small>
-                    ') !!}
-                </td>
-                <td>
-                    {!! Form::text('nbmax' . $parc->id, null, ['class' => 'form-control', 'placeholder' => 'nbmax']) !!}
-                    {!! $errors->first('nbmax' . $parc->id, '
-                    <small class="help-block">:message</small>
-                    ') !!}
-                </td>
+                    </td>
+                    <td>
+                        {!! Form::text('nbmax' . $parc->id, $parc_ue->nbmax, ['class' => 'form-control', 'placeholder' => 'nbmax']) !!}
+                        {!! $errors->first('nbmax' . $parc->id, '
+                        <small class="help-block">:message</small>
+                        ') !!}
+                    </td>
+                @else
+                    <td>
+                        <div class="form-group {!! $errors->has('statut' . $parc->id) ? 'has-error' : '' !!}">
+                            {!! Form::select('statut' . $parc->id, array('obligatoire', 'optionnelle', 'non enseignée' ), '2', ['class' => 'form-control'])
+                            !!}
+                            {!! $errors->first('statut' . $parc->id, '
+                            <small class="help-block">:message</small>
+                            ') !!}
+                        </div>
+                    </td>
+                    <td>
+                        {!! Form::text('nbmin' . $parc->id, null, ['class' => 'form-control', 'placeholder' => 'nbmin']) !!}
+                        {!! $errors->first('nbmin' . $parc->id, '
+                        <small class="help-block">:message</small>
+                        ') !!}
+                    </td>
+                    <td>
+                        {!! Form::text('nbmax' . $parc->id, null, ['class' => 'form-control', 'placeholder' => 'nbmax']) !!}
+                        {!! $errors->first('nbmax' . $parc->id, '
+                        <small class="help-block">:message</small>
+                        ') !!}
+                    </td>
+            @endif
             </tr>
         @endforeach
     </table>
