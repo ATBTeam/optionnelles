@@ -24,10 +24,8 @@ class ChoixController extends Controller
     public function index()
     {
         if(Auth::check()) {
-            //$choix = Choix::all();
             $choix = Choix::paginate(40);
 
-            //return view('choix.index', compact('choix'));
             return response()->view('choix/index', ['choix' => $choix]);
         }
         return redirect('/');
@@ -119,9 +117,9 @@ class ChoixController extends Controller
         }
 
         if ($plusDePlace) {
-            return redirect('choix/choisir');
+            return redirect('choisir');
         } else {
-            return redirect('choix');
+            return redirect('compte/choix');
         }
     }
 
@@ -136,7 +134,6 @@ class ChoixController extends Controller
 
     public function mesChoix()
     {
-        // TODO remplacer User::find(1) par Auth::user()
         $choix = Auth::user()->choixes()->get();
         //$choix = User::find($this->userId)->choixes()->get();
 
@@ -146,22 +143,25 @@ class ChoixController extends Controller
     public function getChoixParParcours($parcours_id)
     {
         $choix = Choix::parParcours($parcours_id)->paginate(40);
-
-        return view('choix.index', compact('choix', 'nbmax'));
+        $type = 'Parcours';
+        $id = $parcours_id;
+        return view('choix.index', compact('choix', 'nbmax', 'id', 'type'));
     }
 
     public function getChoixParUe($ue_id)
     {
         $choix = Choix::parUe($ue_id)->paginate(40);
-
-        return view('choix.index', compact('choix'));
+        $type = 'Ue';
+        $id = $ue_id;
+        return view('choix.index', compact('choix', 'nbmax', 'id', 'type'));
     }
 
     public function getChoixParUser($user_id)
     {
         $choix = Choix::parUser($user_id)->paginate(40);
-
-        return view('choix.index', compact('choix'));
+        $type = 'User';
+        $id = $user_id;
+        return view('choix.index', compact('choix', 'nbmax', 'id', 'type'));
     }
 
     public function adminAjoutUser($ue_id, $user_id)

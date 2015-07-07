@@ -100,10 +100,10 @@ Route::get('/ue', 'UesController@index');
 Route::get('/ue/{ue}', 'UesController@show');
 
 // Gestion des Choix : TODO (work in progress)
-Route::get('choix', 'ChoixController@index');
-Route::get('choix/choisir', 'ChoixController@create');
+//Route::get('choix', 'ChoixController@index');
+Route::get('choisir', 'ChoixController@create');
 Route::get('compte/choix', 'ChoixController@meschoix');
-Route::post('choix', 'ChoixController@store');
+Route::post('compte/choix', 'ChoixController@store');
 Route::get('choix/parcours/{id}', 'ChoixController@getChoixParParcours');
 Route::get('choix/ue/{id}', 'ChoixController@getChoixParUe');
 Route::get('choix/user/{id}', 'ChoixController@getChoixParUser');
