@@ -9,7 +9,6 @@
     </style>
 
 @section('contenu')
-    <br>
 
     <div class="gestion_user">
         <h2>PAGE DE GESTION DES UTILISATEURS</h2>
@@ -76,7 +75,7 @@
                             </select>
 
                         </div>
-                        
+
                     </div>
 
                 <div id="groupe2" class="panel-body">
@@ -149,6 +148,7 @@
         <a style="float:left;" href="user/add">Créer un nouveau utilisateur</a>
         <a style="float:right; cursor: pointer;" onclick="showFiltrage();">Filtrer des utilisateurs</a>
     </div>
+    <div style="margin:auto; width:150px;">{!! $users->render() !!}</div>
 
     <script>
         function showFiltrage(){

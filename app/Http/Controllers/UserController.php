@@ -254,7 +254,8 @@ class UserController extends Controller{
     public function show_all_user(){
         $user = Auth::user();
         if($user->profil->intitule == "administrateur"){
-            $users = User::all();
+            //$users = User::all());
+            $users = DB::table('user')->paginate(8);
             return response()->view('auth/show_all_user', ['users' => $users]);
         }
         return "Vous êtes pas administrateur";
@@ -273,18 +274,18 @@ class UserController extends Controller{
             switch (count($key)){
                 case 1:
                     $users = DB::table('user')
-                        ->where($key[0][0], '=', $key[0][1])->get();
+                        ->where($key[0][0], '=', $key[0][1])->paginate(8);
                     break;
                 case 2:
                     $users = DB::table('user')
                         ->where($key[0][0], '=', $key[0][1])
-                        ->where($key[1][0], '=', $key[1][1])->get();
+                        ->where($key[1][0], '=', $key[1][1])->paginate(8);
                     break;
                 case 3:
                     $users = DB::table('user')
                         ->where($key[0][0], '=', $key[0][1])
                         ->where($key[1][0], '=', $key[1][1])
-                        ->where($key[2][0], '=', $key[2][1])->get();
+                        ->where($key[2][0], '=', $key[2][1])->paginate(8);
                     break;
                 default:
                     $users = User::all();
