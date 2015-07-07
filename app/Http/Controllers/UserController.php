@@ -14,6 +14,7 @@ use App\Ue;
 use App\User;
 use App\Profil;
 use App\Parcours;
+use Mail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use DB;
@@ -40,6 +41,19 @@ class UserController extends Controller{
             }
         }
         return response()->view('accueil/accueilVisit');
+    }
+
+    function sendValidationMail($id)
+    {
+        $user = User::FindOrFail($id);
+        $mail = $user->mail;
+
+        Mail::send('emails.activation', ['test'=>'test'], function($message) use($mail)
+        {
+            $message->to($mail)->subject('Activation de compte'); //modifier addresse attention erreur ->to
+        });
+
+        return null;
     }
 
     //Etudiant
@@ -499,9 +513,17 @@ class UserController extends Controller{
         if($user->profil->intitule == "administrateur"){
             $user = User::find($id);
             if($user->actif==0)
+            {
                 $user->actif = 1;
-            else $user->actif = 0;
-            $user->save();
+                $user->save();
+                $this->sendValidationMail($id);
+            }
+            else
+            {
+                $user->actif = 0;
+                $user->save();
+            }
+
             //Enovyer une notification par mail au utilisateur
 
 

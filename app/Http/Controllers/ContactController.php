@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Mail;
 use App\Http\Requests\ContactRequest;
+use App\User;
 
 class ContactController extends Controller {
 
@@ -20,5 +21,7 @@ class ContactController extends Controller {
 
         return view('confirm');
     }
+
+
 
 }
