@@ -15,7 +15,7 @@
             font-size: 16px;
         }
 
-        .gestion_user {
+        .gestion_ue {
             width: 95%;
             margin: auto;
         }
