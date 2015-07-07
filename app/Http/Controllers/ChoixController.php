@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use DB;
 use App\Choix;
 use App\Parcours;
@@ -55,7 +56,15 @@ class ChoixController extends Controller
 
         for ($semestre = 1; $semestre <= 2; ++$semestre) {
             $nbopt = ($semestre == 1) ? $parcours->nb_opt_s1 : $parcours->nb_opt_s2;
+            $deb = ($semestre == 1) ? $parcours->deb_choix_s1 : $parcours->deb_choix_s2;
+            $fin = ($semestre ==1) ? $parcours->fin_choix_s1 : $parcours->fin_choix_s2;
+            $date_debut = Carbon::createFromFormat('Y-m-d H:i:s', $deb);
+            $date_fin = Carbon::createFromFormat('Y-m-d H:i:s', $fin);
 
+            if (! Carbon::now()->between($date_debut, $date_fin)){
+                \Session::flash('trop_tard_s' . $semestre, 'Les choix sont clos ! Vos modifications ne sont pas enregistrées.');
+                return redirect('choix/choisir');
+            }
             if (count($request->input('choix_s' . $semestre)) > $nbopt) {
                 \Session::flash('trop_choix_s' . $semestre, 'Vous ne pouvez faire que ' . $nbopt . ' choix');
                 return redirect('choix/choisir')->withInput();

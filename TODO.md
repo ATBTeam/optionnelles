@@ -1,9 +1,5 @@
 # Choix
 ---
-###Dates
-* Gérer les semestres
-* Gérer les dates d'ouverture des choix
-
 ###Admin
 * Ajout d'un choix (via page affichant l'UE)
 * Ajout d'un choix (via page affichant l'User étudiant)
