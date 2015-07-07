@@ -23,10 +23,14 @@ class ChoixController extends Controller
 
     public function index()
     {
-        //$choix = Choix::all();
-        $choix = Choix::paginate(40);
+        if(Auth::check()) {
+            //$choix = Choix::all();
+            $choix = Choix::paginate(40);
 
-        return view('choix.index', compact('choix'));
+            //return view('choix.index', compact('choix'));
+            return response()->view('choix/index', ['choix' => $choix]);
+        }
+        return redirect('/');
     }
 
     public function show($id)
@@ -36,21 +40,27 @@ class ChoixController extends Controller
 
     public function create()
     {
-        // TODO : remplacer  User::find(1)  par Auth::user()
-        //$parcours = Auth::user()->parcours()->first();
-        $parcours = User::find($this->userId)->parcours()->first();
+        if(Auth::check()) {
+            // TODO : remplacer  User::find(1)  par Auth::user()
+            $parcours = Auth::user()->parcours()->first();
 
-        $ues_s1 = $parcours->ues()->where('semestre', 1)->get();
-        $ues_s2 = $parcours->ues()->where('semestre', 2)->get();
+            //$parcours = User::find($this->userId)->parcours()->first();
 
-        $ues = array($ues_s1, $ues_s2);
-        return view('choix.create', compact('parcours', 'ues'));
+            $ues_s1 = $parcours->ues()->where('semestre', 1)->get();
+
+            $ues_s2 = $parcours->ues()->where('semestre', 2)->get();
+
+            $ues = array($ues_s1, $ues_s2);
+            return response()->view('choix/create', ['parcours' => $parcours, 'ues' => $ues]);
+        }
+        return redirect('/');
     }
 
     public function store(Request $request)
     {
         // Todo : Auth::user()->id;
-        $user = User::find($this->userId);
+        //$user = User::find($this->userId);
+        $user = Auth::user()->id;
         $parcours = $user->parcours()->first();
         $plusDePlace = false;
 
@@ -127,8 +137,8 @@ class ChoixController extends Controller
     public function mesChoix()
     {
         // TODO remplacer User::find(1) par Auth::user()
-        //$choix = Auth::user()->choixes()->get();
-        $choix = User::find($this->userId)->choixes()->get();
+        $choix = Auth::user()->choixes()->get();
+        //$choix = User::find($this->userId)->choixes()->get();
 
         return view('choix.meschoix', compact('choix'));
     }
@@ -158,7 +168,7 @@ class ChoixController extends Controller
     {
         $parcours_id = User::find($user_id)->first()->parcours()->first()->id;
         $nbInscrits = $this->getNbInscritsParParcours($ue_id, $parcours_id);
-        if ($nbInscrits == Parcours_ue::where('ue_id', $ue->id)->first()->nbmax) {
+        if ($nbInscrits == Parcours_ue::where('ue_id', $ue_id)->first()->nbmax) {
             $choix = new Choix();
         }
         $choix->ue_id = $ue_id;

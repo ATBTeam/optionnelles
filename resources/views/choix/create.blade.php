@@ -19,7 +19,8 @@
             </div>
             <?php
             // TODO Auth::user()->id
-            $user = App\User::find(1)->first();
+            //$user = App\User::find(1)->first();
+            $user = Auth::user();
             $parcours_id = $user->parcours_id;
             ?>
             @for($semestre = 1; $semestre <= 2; ++$semestre)
