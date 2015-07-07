@@ -26,7 +26,7 @@ class Choix extends Model
     }
     
     public function scopeParParcours($query, $parcours_Id){
-        return $query->where('parcours_id', $parcours_Id);
+        return $query->where('parcours_ue_id', $parcours_Id);
     }
 
     public function scopeParUser($query, $user_Id){

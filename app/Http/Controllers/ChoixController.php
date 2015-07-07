@@ -97,7 +97,7 @@ class ChoixController extends Controller
                         $choix = new Choix();
                         $choix->ue_id = $ue_id;
                         $choix->user_id = $user->id;
-                        $choix->parcours_id = $user->parcours()->first()->id;
+                        $choix->parcours_ue_id = $user->parcours()->first()->id;
 
                         $choix->date_choix = date('Y-m-d H:i:s');
                         $choix->save();
@@ -186,7 +186,7 @@ class ChoixController extends Controller
 
     public function getNbInscritsParParcours($ue_id, $parcours_id)
     {
-        return Choix::where('ue_id', $ue_id)->where('parcours_id', $parcours_id)->count();
+        return Choix::where('ue_id', $ue_id)->where('parcours_ue_id', $parcours_id)->count();
     }
 
     public function getNbMaxParParcours($ue_id, $parcours_id)
