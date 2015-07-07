@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Choix;
 use App\Helpers\Helpers;
 use App\Http\Requests\UeRequest;
 use App\Parcours;
@@ -10,6 +11,7 @@ use App\Ue;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class UesController extends Controller
@@ -37,11 +39,12 @@ class UesController extends Controller
             return redirect('/');
         }
         $ue = new Ue();
-        $parcours_ue = new Parcours_ue();
 
+        $parcours_ues = new Collection();
         $parcours = Parcours::all();
 
-        return response()->view('ues.create', compact('parcours', 'parcours_ue'));
+
+        return response()->view('ues.create', compact('parcours', 'parcours_ues'));
 
         //return view('ues.create');
     }
@@ -82,7 +85,9 @@ class UesController extends Controller
         }
         $parcours = Parcours::all();
 
-        return response()->view('ues.edit', compact('ue', 'parcours'));
+        $parcours_ues = $ue->parcours_ues()->get();
+
+        return response()->view('ues.edit', compact('ue', 'parcours', 'parcours_ues'));
 
     }
 
@@ -92,9 +97,57 @@ class UesController extends Controller
             return redirect('/');
         }
 
+        $choix_precedents = $ue->parcours_ues()->get();
         $ue->update($request->all());
+        $liste_parcours = Parcours::all();
+        $parcours_ue = [];
+        foreach ($liste_parcours as $parcours) {
+            $statut = $request->get('statut' . $parcours->id);
+            $nbmin = $request->get('nbmin' . $parcours->id);
+            $nbmax = $request->get('nbmax' . $parcours->id);
+
+            if ($statut == 2 && $choix_precedents->contains('parcours_id', $parcours->id)) {
+                // C'est une suppression de parcours_ue
+                $ue->parcours_ues()->where('parcours_id', $parcours->id)->delete();
+                Choix::parUe($ue->id)->delete();
+
+                $parc_ue = $choix_precedents->where('parcours_id', $parcours->id)->first();
+            }
+            if ($statut != 2 && ! empty($nbmin) && ! empty($nbmax)) {
+                if ( $choix_precedents->contains('parcours_id', $parcours->id)) {
+                    // C'est une mise à jour de parcours_ue
+                    $parc_ue = $choix_precedents->where('parcours_id', $parcours->id)->first();
+                    if ($parc_ue->statut != $statut || $parc_ue->nbmin != $nbmin || $parc_ue->nbmax != $nbmax)
+                    {
+                        Parcours_ue::where('parcours_id', $parcours->id)
+                            ->where('ue_id', $ue->id)
+                            ->update(['est_optionnel' => $statut, 'nbmin' => $nbmin, 'nbmax' => $nbmax]);
+                    }
+                } else {
+                    // C'est une création de parcours_ue
+                    $parc_ue = new Parcours_ue();
+                    $parc_ue->parcours_id = $parcours->id;
+                    $parc_ue->est_optionnel = $statut;
+                    $parc_ue->nbmin = $nbmin;
+                    $parc_ue->nbmax = $nbmax;
+                    array_push($parcours_ue, $parc_ue);
+                }
+            }
+            $ue->parcours_ues()->saveMany($parcours_ue);
+        }
 
         return redirect('admin/ue');
+
+        /*
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
+        }
+
+        $ue->update($request->all());
+
+
+        return redirect('admin/ue');
+        */
     }
 
     public function post_Delete_Page(Ue $ue)
@@ -112,6 +165,7 @@ class UesController extends Controller
             return redirect('/');
         }
         $text = $ue->intitule . " à été supprimée";
+        Choix::parUe($ue->id)->delete();
         $ue->delete();
 
         return view('confirmation', compact('text'));
@@ -128,7 +182,8 @@ class UesController extends Controller
 
     }
 
-    public function show_Ue_enseignees($prof_id){ // $prof_id  sera $user_id
+    public function show_Ue_enseignees($prof_id)
+    { // $prof_id  sera $user_id
 
     }
 }
