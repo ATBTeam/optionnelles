@@ -256,6 +256,7 @@ class UserController extends Controller{
         if($user->profil->intitule == "administrateur"){
             //$users = User::all());
             $users = DB::table('user')->paginate(8);
+            //$users->setPath('custom/url');
             return response()->view('auth/show_all_user', ['users' => $users]);
         }
         return "Vous êtes pas administrateur";

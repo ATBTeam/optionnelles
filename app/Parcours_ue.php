@@ -10,7 +10,7 @@ class Parcours_ue extends Model
     protected $fillable = ['parcours_id', 'ue_id', 'nbmin', 'nb_max', 'est_optionnel'];
 
     public function choixes() {
-        return $this->hasMany('Choix'); // this matches the Eloquent model
+        return $this->hasMany('App\Choix'); // this matches the Eloquent model
     }
 
     public function parcours()

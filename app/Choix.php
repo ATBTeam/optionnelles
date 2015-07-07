@@ -8,7 +8,7 @@ class Choix extends Model
 {
 
     protected $table = 'choix';
-    protected $fillable = ['user_id', 'ue_id', 'parcours_id', 'date_choix'];
+    protected $fillable = ['user_id', 'ue_id', 'parcours_ue_id', 'date_choix'];
 
     public function user()
     {
@@ -26,7 +26,7 @@ class Choix extends Model
     }
     
     public function scopeParParcours($query, $parcours_Id){
-        return $query->where('parcours_id', $parcours_Id);
+        return $query->where('parcours_ue_id', $parcours_Id);
     }
 
     public function scopeParUser($query, $user_Id){
