@@ -60,7 +60,7 @@ class ChoixController extends Controller
     {
         // Todo : Auth::user()->id;
         //$user = User::find($this->userId);
-        $user = Auth::user()->id;
+        $user = Auth::user();
         $parcours = $user->parcours()->first();
         $plusDePlace = false;
 

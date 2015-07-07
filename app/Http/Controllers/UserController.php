@@ -259,6 +259,41 @@ class UserController extends Controller{
         }
         return "Vous êtes pas administrateur";
     }
+    public function show_all_user_post(Request $request){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $key = new Collection();
+            if($request->input('profil'))
+                $key->add(['profil_id', Profil::find($request->input('profil'))->id]);
+            if($request->input('parcours'))
+                $key->add(['parcours_id', Parcours::find($request->input('parcours'))->id]);
+            if($request->input('groupe'))
+                $key->add(['groupe_id', Groupe::find($request->input('groupe'))->id]);
+
+            switch (count($key)){
+                case 1:
+                    $users = DB::table('user')
+                        ->where($key[0][0], '=', $key[0][1])->get();
+                    break;
+                case 2:
+                    $users = DB::table('user')
+                        ->where($key[0][0], '=', $key[0][1])
+                        ->where($key[1][0], '=', $key[1][1])->get();
+                    break;
+                case 3:
+                    $users = DB::table('user')
+                        ->where($key[0][0], '=', $key[0][1])
+                        ->where($key[1][0], '=', $key[1][1])
+                        ->where($key[2][0], '=', $key[2][1])->get();
+                    break;
+                default:
+                    $users = User::all();
+            }
+            //return $users;
+            return response()->view('auth/show_all_user', ['users' => $users]);
+        }
+        return "Vous êtes pas administrateur";
+    }
 
     //Fonction pour ajouter un nouveau utilisateur ==> Done
     public function add_user_get(){
@@ -350,7 +385,7 @@ class UserController extends Controller{
                 'prenom' => 'required',
                 'mail' => 'required',
                 'login' => 'required|min:8',
-                'mdp2' => 'required|min:8',
+                'mdp2' => 'min:8',
                 'profil' => 'exists:profil,id'
             ]);
 
@@ -383,7 +418,11 @@ class UserController extends Controller{
             $user->prenom = $request->input('prenom');
             $user->mail = $request->input('mail');
             $user->login =  $request->input('login');
-            $user->mdp = $request->input('mdp2');
+
+            if ($request->input('mdp2')){
+                $user->mdp = $request->input('mdp2');
+            }
+
             if($request->input('actif')==1)
                 $user->actif = $request->input('actif');
             else
