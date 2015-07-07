@@ -1,4 +1,4 @@
-@extends('template.templateAdmin')
+@extends('template.template')
 
 @section('contenu')
     <br>
@@ -8,6 +8,8 @@
             <div class="panel-body">
                 Merci. Votre message a été transmis à l'administrateur du site. Vous recevrez une réponse rapidement.
             </div>
+
+            <div class="panel-heading"> <a href="{{url('/')}}"><h1>Retour à l'accueil</h1></a></div>
         </div>
     </div>
 @stop
