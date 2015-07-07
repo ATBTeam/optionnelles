@@ -12,7 +12,7 @@
                 <div class="panel-heading">Type de profil</div>
                 <div class="panel-body">
                     <div class="form-group {!! $errors->has('profil') ? 'has-error' : '' !!}">
-                        <select name="profil">
+                        <select onChange="checkProfil(this);" name="profil">
                             <option value="0">Choissir un profil</option>
                             @if (isset($profils))
                                 @foreach ($profils as $profil)
@@ -30,8 +30,8 @@
             @endif
 
             @if(isset($parcours))
-                <div class="panel-heading">Année suivie</div>
-                <div class="panel-body">
+                <div id="parcours1" class="panel-heading">Année suivie</div>
+                <div id="parcours2" class="panel-body">
                     <div class="form-group {!! $errors->has('parcours') ? 'has-error' : '' !!}">
                         <select name="parcours">
                             <option value="0">Choisir un parcours</option>
@@ -57,8 +57,8 @@
             @endif
 
             @if(isset($groupes))
-                <div class="panel-heading">Groupe</div>
-                <div class="panel-body">
+                <div id="groupe1" class="panel-heading">Groupe</div>
+                <div id="groupe2" class="panel-body">
                     <div class="form-group {!! $errors->has('groupe') ? 'has-error' : '' !!}">
                         <select name="groupe">
                             <option value="0">Choisir un groupe</option>
@@ -84,8 +84,8 @@
             @endif
 
             @if(isset($ues))
-                <div class="panel-heading">Ues</div>
-                <div class="panel-body">
+                <div id="ue1" class="panel-heading">Ues</div>
+                <div id="ue2" class="panel-body">
                     <div class="form-group {!! $errors->has('ue') ? 'has-error' : '' !!}">
                         @if(isset($user->uesEnseignees[0]))
                             @foreach($ues as $ue)
@@ -166,6 +166,43 @@
                 </div>
             @endif
 
+
+
         </div>
     </div>
+
+    <script>
+        document.getElementById("parcours1").style.display = "none";
+        document.getElementById("parcours2").style.display = "none";
+        document.getElementById("groupe1").style.display = "none";
+        document.getElementById("groupe2").style.display = "none";
+        document.getElementById("ue1").style.display = "none";
+        document.getElementById("ue2").style.display = "none";
+        function checkProfil(obj){
+            document.getElementById("parcours1").style.display = "none";
+            document.getElementById("parcours2").style.display = "none";
+            document.getElementById("groupe1").style.display = "none";
+            document.getElementById("groupe2").style.display = "none";
+            document.getElementById("ue1").style.display = "none";
+            document.getElementById("ue2").style.display = "none";
+            var profil;
+            @foreach(\App\Profil::all() as $profil)
+            if(obj.value == "{{ $profil->id }}"){
+                profil = "{!! $profil->intitule !!}";
+            }
+            @endforeach
+            switch (profil){
+                case "étudiant":
+                    document.getElementById("parcours1").style.display = "block";
+                    document.getElementById("parcours2").style.display = "block";
+                    document.getElementById("groupe1").style.display = "block";
+                    document.getElementById("groupe2").style.display = "block";
+                    break;
+                case "professeur":
+                    document.getElementById("ue1").style.display = "block";
+                    document.getElementById("ue2").style.display = "block";
+                    break;
+            }
+        }
+    </script>
 @stop
