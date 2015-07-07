@@ -167,6 +167,7 @@
             -webkit-border-radius: 0 0 6px 6px
         border-radius: 0 0 6px 6px
         }
+
     </style>
     @yield('style')
     <!--End of Truong-->
