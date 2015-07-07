@@ -42,7 +42,7 @@ Route::get('admin/user/delete/{id}',['middleware' => 'auth', 'uses' => 'UserCont
 Route::get('admin/user/update/{id}',['middleware' => 'auth', 'uses' => 'UserController@update_user_get']);
 Route::post('admin/user/update/{id}',['middleware' => 'auth', 'uses' => 'UserController@update_user_post']);
 Route::get('admin/user/active/{id}',['middleware' => 'auth', 'uses' => 'UserController@active_user']);
-Route::get('admin/user/deleteEtudiants',['middleware' => 'auth', 'uses' => 'UserController@delete_all']);
+Route::get('admin/user/deleteStudents',['middleware' => 'auth', 'uses' => 'UserController@delete_all']);
 
 //Gérer des profils => Done
 //Route::get('admin/profil/add',['middleware' => 'auth', 'uses' => 'ProfilController@add_profil_get']);

@@ -88,8 +88,8 @@
         </div>
 
 
-        <a style="float:left;" href="{!! url('user/add') !!}">Créer un nouveau utilisateur</a>
-        <span style="float:right;"><a href="{!! url('user/deleteEtudiants') !!}">Supprimer tous les étudiants</a>&nbsp;|&nbsp;<a style="cursor: pointer;" onclick="showFiltrage();">Filtrer des utilisateurs</a></span>
+        <a style="float:left;" href="{!! url('admin/user/add') !!}">Créer un nouveau utilisateur</a>
+        <span style="float:right;"><a href="{!! url('admin/user/deleteStudents') !!}">Supprimer tous les étudiants</a>&nbsp;|&nbsp;<a style="cursor: pointer;" onclick="showFiltrage();">Filtrer des utilisateurs</a></span>
         @if(isset($users))
             <table class="bordered">
                 <thead>
@@ -145,8 +145,8 @@
                 @endforeach
             </table>
         @endif
-        <a style="float:left;" href="{!! url('user/add') !!}">Créer un nouveau utilisateur</a>
-        <span style="float:right;"><a href="{!! url('user/deleteEtudiants') !!}">Supprimer tous les étudiants</a>&nbsp;|&nbsp;<a style="cursor: pointer;" onclick="showFiltrage();">Filtrer des utilisateurs</a></span>
+        <a style="float:left;" href="{!! url('admin/user/add') !!}">Créer un nouveau utilisateur</a>
+        <span style="float:right;"><a href="{!! url('admin/user/deleteStudents') !!}">Supprimer tous les étudiants</a>&nbsp;|&nbsp;<a style="cursor: pointer;" onclick="showFiltrage();">Filtrer des utilisateurs</a></span>
     </div>
     <div style="margin:auto; width:150px;">{!! $users->render() !!}</div>
 

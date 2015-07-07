@@ -484,8 +484,7 @@ class UserController extends Controller{
     public function delete_all(){
         $user = Auth::user();
         if($user->profil->intitule == "administrateur"){
-            $profil_id = Profil::where('intitule', '=', 'étudiant')->get()->intitule;
-            return $profil_id;
+            $profil_id = Profil::where('intitule', '=', 'étudiant')->get()->first()->intitule;
             User::where('profil_id', '=', $profil_id)->delete();
             return redirect('admin/user');
         }
