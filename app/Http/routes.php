@@ -21,8 +21,10 @@ Route::get('compte',['middleware' => 'auth', 'uses' => 'UserController@show_comp
 Route::post('compte',['middleware' => 'auth', 'uses' => 'UserController@show_compte_post']);
 Route::get('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
 Route::post('compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
-Route::get('compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
-Route::post('compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
+Route::get('compte/reinitialyze/{id}','UserController@reinitialyze_password_get');
+Route::post('compte/reinitialyze/{id}','UserController@reinitialyze_password_post');
+Route::get('compte/resetMdpParMail','UserController@resetMdpParMail_get');
+Route::post('compte/resetMdpParMail','UserController@resetMdpParMail_post');
 //Gérer des comptes des autres (administrateur, professeur, secrétariat) => en cours
 Route::get('admin/compte/register','UserController@admin_register_get');
 Route::post('admin/compte/register','UserController@admin_register_post');
@@ -32,8 +34,8 @@ Route::post('admin/compte/register','UserController@admin_register_post');
 //Route::get('admin/compte/show',['middleware' => 'auth', 'uses' => 'UserController@admin_show_compte']);
 //Route::get('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_get']);
 //Route::post('admin/compte/update',['middleware' => 'auth', 'uses' => 'UserController@update_compte_post']);
-Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
-Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
+//Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_get');
+//Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des utilisateurs => Done
 Route::get('admin/user',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
 Route::post('admin/user',['middleware' => 'auth', 'uses' => 'UserController@show_all_user_post']);
