@@ -8,7 +8,7 @@
         <div class="media">
 
             <div class="media-left">
-                <a href="#">
+                <a href="{{url('listes_emargement/parcours/'.$ue->id)}}">
                     <img class="media-object" width="64" src="{{url('img/csv.png')}}">
                 </a>
             </div>

@@ -59,9 +59,9 @@ Route::get('admin/groupe',['middleware' => 'auth', 'uses' => 'GroupeController@s
 
 //formulaire de concact : OK et testé => paramétrer la bonne @mail de l'admin dans le controler, config\mail.php, .env (server smtp)
 Route::get('contact', 'ContactController@getForm');//OK et testé
-Route::post('contact/', 'ContactController@postForm'); // OK et testé
+Route::post('contact', 'ContactController@postForm'); // OK et testé
 
-//gestion des spécialités : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
+//gestion des spécialités :
 Route::get('admin/specialite/add', 'SpecialiteController@get_Create_Page'); // OK et testé
 Route::post('admin/specialite/add', 'SpecialiteController@post_Create'); // OK et testé
 Route::post('admin/specialite/update', 'SpecialiteController@post_Update_Page'); // OK et testé
@@ -71,7 +71,7 @@ Route::post('admin/specialite/deleteCancel', 'SpecialiteController@post_DeleteCa
 Route::post('admin/specialite/deleteConfirm/{id}', 'SpecialiteController@post_DeleteConfirm'); // OK et testé
 Route::get('admin/specialite', 'SpecialiteController@get_List_Page'); // OK et testé
 
-//gestion des parcours : en cours => ajouter restriction user (admin seulement) TODO (Thomas, work in progress)
+//gestion des parcours :
 Route::get('admin/parcours/add', 'ParcoursController@get_Create_Page'); // OK et testé
 Route::post('admin/parcours/add', 'ParcoursController@post_Create');// OK et testé
 Route::post('admin/parcours/update', 'ParcoursController@post_Update_Page');// OK et testé
@@ -98,6 +98,8 @@ Route::get('choix/parcours/{id}', 'ChoixController@getChoixParParcours');
 Route::get('choix/ue/{id}', 'ChoixController@getChoixParUe');
 Route::get('choix/user/{id}', 'ChoixController@getChoixParUser');
 
-//Affichage des listes d'émargement
+//Affichage des listes d'émargement :
 Route::get('listes_emargement/ue', 'EmargementController@get_UeUserList_Page');
 Route::get('listes_emargement/parcours', 'EmargementController@get_ParcoursUserList_Page');
+Route::get('listes_emargement/parcours/{id}', 'EmargementController@get_ParcoursUserList_csv');
+Route::get('listes_emargement/ue/{id}', 'EmargementController@get_UeUserList_csv');
