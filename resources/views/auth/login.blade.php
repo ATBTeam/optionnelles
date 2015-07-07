@@ -21,6 +21,8 @@
                     {!! Form::password('mdp', ['class' => 'form-control', 'placeholder' => "votre mot de passe"]) !!}
                     {!! $errors->first('mdp', '<small class="help-block">:message</small>') !!}
                 </div>
+
+                <a href="{!! url('/compte/resetMdpParMail') !!}">Vous avez oubliez votre mot de passe</a>
                 {!! Form::submit('Se connecter !', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
             </div>
