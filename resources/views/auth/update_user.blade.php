@@ -172,12 +172,23 @@
     </div>
 
     <script>
-        document.getElementById("parcours1").style.display = "none";
-        document.getElementById("parcours2").style.display = "none";
-        document.getElementById("groupe1").style.display = "none";
-        document.getElementById("groupe2").style.display = "none";
-        document.getElementById("ue1").style.display = "none";
-        document.getElementById("ue2").style.display = "none";
+        if("{!! $user->profil->intitule !!}" == "étudiant"){
+            document.getElementById("ue1").style.display = "none";
+            document.getElementById("ue2").style.display = "none";
+        }else if ("{!! $user->profil->intitule !!}" == "professeur"){
+            document.getElementById("parcours1").style.display = "none";
+            document.getElementById("parcours2").style.display = "none";
+            document.getElementById("groupe1").style.display = "none";
+            document.getElementById("groupe2").style.display = "none";
+        }else{
+            document.getElementById("parcours1").style.display = "none";
+            document.getElementById("parcours2").style.display = "none";
+            document.getElementById("groupe1").style.display = "none";
+            document.getElementById("groupe2").style.display = "none";
+            document.getElementById("ue1").style.display = "none";
+            document.getElementById("ue2").style.display = "none";
+        }
+
         function checkProfil(obj){
             document.getElementById("parcours1").style.display = "none";
             document.getElementById("parcours2").style.display = "none";
