@@ -50,7 +50,7 @@
                             {{ \Carbon\Carbon::setLocale('fr') }}
                                 ( {{$date_fin->diffForHumans() }} environ )
                                 @else
-                                Les choix sont ouverts du {{ $date_debut->format('d/m/Y à H:i:s') }}
+                                Les choix ouvriront du {{ $date_debut->format('d/m/Y à H:i:s') }}
                             au {{ $date_fin->format('d/m/Y à H:i:s') }}.
                             @endif
                         </div>

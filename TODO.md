@@ -9,8 +9,6 @@
 ###Auth
 * Gérer les Auth::User()
 
-###Utiliser le "template" pour les formulaires
-
 # UE
 ---
 ###Affichage
