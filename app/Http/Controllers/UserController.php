@@ -480,6 +480,18 @@ class UserController extends Controller{
         return "Vous êtes pas administrateur";
     }
 
+    //Fonction pour supprimer alll user => Done
+    public function delete_all(){
+        $user = Auth::user();
+        if($user->profil->intitule == "administrateur"){
+            $profil_id = Profil::where('intitule', '=', 'étudiant')->get()->intitule;
+            return $profil_id;
+            User::where('profil_id', '=', $profil_id)->delete();
+            return redirect('admin/user');
+        }
+        return "Vous êtes pas administrateur";
+    }
+
     //Fonction pour activer un user et lui envoyer une notification par mail => Done
     public function active_user($id){
         $user = Auth::user();
