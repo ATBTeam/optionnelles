@@ -289,7 +289,7 @@ class UserController extends Controller{
                         ->where($key[2][0], '=', $key[2][1])->paginate(8);
                     break;
                 default:
-                    $users = User::all();
+                    $users = DB::table('user')->paginate(8);
             }
             //return $users;
             return response()->view('auth/show_all_user', ['users' => $users]);
