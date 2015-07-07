@@ -48,9 +48,8 @@
                     @if(Helpers::isAdmin() )
                         <th>Modifier</th>
                         <th>Supprimer</th>
-                    @elseif(Helpers::isProf() || Helpers::isSecr())
-                        <th>Afficher</th>
                     @endif
+                        <th>Afficher</th>
                 </tr>
                 </thead>
 
@@ -75,6 +74,7 @@
                         @if(Helpers::isAdmin() )
                             <td><a href="{{url('admin/ue/update/' . $ue->id) }}">modifier</a></td>
                             <td><a href="{{ url('admin/ue/delete/' . $ue->id) }}">supprimer</a></td>
+                            <td><a href="{{url('admin/ue/' . $ue->id) }}">afficher</a></td>
                         @elseif(Helpers::isProf() || Helpers::isSecr())
                             <td><a href="{{url('ue/' . $ue->id) }}">afficher</a></td>
                         @endif

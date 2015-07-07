@@ -193,4 +193,16 @@ class ChoixController extends Controller
     {
         return Parcours_ue::where('ue_id', $ue_id)->where('parcours_id', $parcours_id)->first()->nbmax;
     }
+
+    public function deleteChoix($ue_id, $user_id){
+        $choix = Choix::parUe($ue_id->id)->parUser($user_id);
+        $choix->delete();
+
+        return redirect('admin/ue');
+    }
+
+    public function admin_addEtudiant(Request $request){
+
+        return redirect('admin/ue');
+    }
 }

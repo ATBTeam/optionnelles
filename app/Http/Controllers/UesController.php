@@ -43,6 +43,18 @@ class UesController extends Controller
         {
             array_push($users, User::where('id', $c->user_id)->first());
         }
+
+        /*
+        //$user_non_inscrit = [];
+        $parcours = $ue->parcours();
+        //$user_non_inscrits = $parcours->users();
+        dd($ue->parcours()->first());
+        foreach($parcours as $p)
+        {
+
+        }
+        */
+
         return view('ues.show', compact('ue', 'users'));
     }
 
@@ -58,8 +70,6 @@ class UesController extends Controller
 
 
         return response()->view('ues.create', compact('parcours', 'parcours_ues'));
-
-        //return view('ues.create');
     }
 
     public function store(UeRequest $request)
@@ -150,17 +160,6 @@ class UesController extends Controller
         }
 
         return redirect('admin/ue');
-
-        /*
-        if (! Helpers::isAdmin()) {
-            return redirect('/');
-        }
-
-        $ue->update($request->all());
-
-
-        return redirect('admin/ue');
-        */
     }
 
     public function post_Delete_Page(Ue $ue)
@@ -192,11 +191,6 @@ class UesController extends Controller
         $text = "Supression annulée";
 
         return view("confirmation", ['text' => $text]);
-
-    }
-
-    public function show_Ue_enseignees($prof_id)
-    { // $prof_id  sera $user_id
 
     }
 }

@@ -107,6 +107,8 @@ Route::post('choix', 'ChoixController@store');
 Route::get('choix/parcours/{id}', 'ChoixController@getChoixParParcours');
 Route::get('choix/ue/{id}', 'ChoixController@getChoixParUe');
 Route::get('choix/user/{id}', 'ChoixController@getChoixParUser');
+Route::get('admin/choix/delete/{ue}/{user}', 'ChoixController@deleteChoix');
+Route::post('admin/choix/addEtudiant', 'ChoixController@admin_addEtudiant');
 
 //Affichage des listes d'émargement :
 Route::get('listes_emargement/ue', 'EmargementController@get_UeUserList_Page');
