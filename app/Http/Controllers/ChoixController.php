@@ -71,7 +71,7 @@ class ChoixController extends Controller
             $date_debut = Carbon::createFromFormat('Y-m-d H:i:s', $deb);
             $date_fin = Carbon::createFromFormat('Y-m-d H:i:s', $fin);
 
-            if (! Carbon::now()->between($date_debut, $date_fin)){
+            if (! Carbon::now()->between($date_debut, $date_fin) && Carbon::now() > $date_fin){
                 \Session::flash('trop_tard_s' . $semestre, 'Les choix sont clos ! Vos modifications ne sont pas enregistrées.');
                 return redirect('choix/choisir');
             }

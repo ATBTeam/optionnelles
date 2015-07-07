@@ -84,12 +84,15 @@ Route::post('admin/parcours/deleteConfirm/{id}', 'ParcoursController@post_Delete
 Route::get('admin/parcours', 'ParcoursController@get_List_Page');// OK et testé
 
 // Gestion des UEs : TODO (Florian, work in progress)
-Route::get('ue', 'UesController@index');
-Route::get('ue/create', 'UesController@create');
-Route::get('ue/{ue}', 'UesController@show');
-Route::post('ue', 'UesController@store');
-Route::get('ue/{ue}/edit', 'UesController@edit');
-Route::patch('ue/{ue}', 'UesController@update');
+Route::get('admin/ue', 'UesController@index');
+Route::get('admin/ue/add', 'UesController@create');
+Route::get('admin/ue/{ue}', 'UesController@show');
+Route::post('admin/ue', 'UesController@store');
+Route::get('admin/ue/update/{ue}', 'UesController@edit');
+Route::patch('admin/ue/{ue}', 'UesController@update');
+Route::get('admin/ue/delete/{ue}', 'UesController@post_Delete_Page');
+Route::post('admin/ue/deleteCancel', 'UesController@post_DeleteCancel');
+Route::post('admin/ue/deleteConfirm/{ue}', 'UesController@post_DeleteConfirm');
 
 // Gestion des Choix : TODO (work in progress)
 Route::get('choix', 'ChoixController@index');

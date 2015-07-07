@@ -1,10 +1,13 @@
 @extends('template.templateAdmin')
 
 @section('contenu')
-    <h1>Créer une UE</h1>
-
-    <hr/>
-    {!! Form::open(['url' => 'ue']) !!}
-        @include('ues._form', ['texteBtn' => 'Créer UE'])
-    {!! Form::close() !!}
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">AJOUT D'UE</div>
+            {!! Form::open(['url' => 'admin/ue']) !!}
+            @include('ues._form', ['texteBtn' => 'Créer UE'])
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
