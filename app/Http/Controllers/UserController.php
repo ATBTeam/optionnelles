@@ -244,7 +244,7 @@ class UserController extends Controller{
             'mail' => 'required|exists:user,mail',
         ]);
         $user = User::where('mail', '=', $request->input('mail'))->get()->first();
-        sendPWDMail($user);
+        $this->sendPWDMail($user);
         return "Vérifiez votre email pour réinitialiser votre compte !";
     }
 
