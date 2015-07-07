@@ -11,11 +11,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{!! url('specialite') !!}">Spécialités</a></li>
-                <li><a href="{!! url('parcours') !!}">Parcours</a></li>
-                <li><a href="{!! url('ue') !!}">UE</a></li>
-                <li><a href="{!! url('admin/user') !!}">Utilisateurs</a></li>
-                <li><a href="{!! url('admin/profil') !!}">UE</a></li>
 
             </ul>
 
