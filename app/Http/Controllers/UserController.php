@@ -56,6 +56,20 @@ class UserController extends Controller{
         return null;
     }
 
+    function sendPWDMail($id)
+    {
+        $user = User::FindOrFail($id);
+        $mail = $user->mail;
+
+        Mail::send('emails.password', ['url'=> url('ton url de form à ouvrir mr modif mdp')], function($message) use($mail)
+        {
+            $message->to($mail)->subject('changement de Mot de passe'); //modifier addresse attention erreur ->to
+        });
+
+        return null;
+    }
+
+
     //Etudiant
     //Fonction pour creer un compte ==> Done
     public function register_get(){
