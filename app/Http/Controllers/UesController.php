@@ -11,6 +11,7 @@ use App\Ue;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,13 @@ class UesController extends Controller
 
     public function index()
     {
-        if (Helpers::isAdmin()) {
+        if (Helpers::isAdmin() || Helpers::isSecr()) {
             $ues = Ue::all();
+
+            return response()->view('ues.show_all_ue', compact('ues'));
+        }
+        else if(Helpers::isProf()){
+            $ues = Auth::user()->uesEnseignees()->get();
 
             return response()->view('ues.show_all_ue', compact('ues'));
         }
@@ -30,7 +36,14 @@ class UesController extends Controller
 
     public function show(UE $ue)
     {
-        return view('ues.show', compact('ue'));
+
+        $choix = Choix::parUe($ue->id)->get();
+        $users = [];
+        foreach($choix as $c)
+        {
+            array_push($users, User::where('id', $c->user_id)->first());
+        }
+        return view('ues.show', compact('ue', 'users'));
     }
 
     public function create()

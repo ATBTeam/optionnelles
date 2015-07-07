@@ -96,6 +96,8 @@ Route::patch('admin/ue/{ue}', 'UesController@update');
 Route::get('admin/ue/delete/{ue}', 'UesController@post_Delete_Page');
 Route::post('admin/ue/deleteCancel', 'UesController@post_DeleteCancel');
 Route::post('admin/ue/deleteConfirm/{ue}', 'UesController@post_DeleteConfirm');
+Route::get('/ue', 'UesController@index');
+Route::get('/ue/{ue}', 'UesController@show');
 
 // Gestion des Choix : TODO (work in progress)
 Route::get('choix', 'ChoixController@index');
