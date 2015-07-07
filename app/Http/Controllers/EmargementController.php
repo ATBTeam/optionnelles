@@ -78,6 +78,7 @@ class EmargementController extends Controller{
         if(!(Helpers::isProf()||Helpers::isSecr())) return redirect('/');
         $ue = Ue::FindOrFail($id);
         $parcours_ue = $ue->parcours_ues;
+
         $output = fopen('php://memory', 'w');
         $filename=$ue->intitule.'.csv';
         // output the column headings

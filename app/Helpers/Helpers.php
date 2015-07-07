@@ -75,7 +75,7 @@ class Helpers {
         $user = Auth::user();
         if(isset($user))
         {
-            if($user->profil->intitule == "secrétariat"){ return true ;}
+            if($user->profil->intitule == "secrétaire"){ return true ;}
             else {return false;}
         }
         else{

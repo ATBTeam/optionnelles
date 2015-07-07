@@ -34,7 +34,7 @@ class UserController extends Controller{
             switch($user->profil->intitule){
                 case 'administrateur': return response()->view('accueil/accueilAdmin');
                 case 'professeur': return redirect('listes_emargement/ue');
-                case 'secrétariat': return redirect('listes_emargement/ue');
+                case 'secrétaire': return redirect('listes_emargement/ue');
                 case 'étudiant': return response()->view('accueil/accueilEtud');
                 default : return response()->view('accueil/accueilVisit');
             }
@@ -83,7 +83,7 @@ class UserController extends Controller{
             switch(Auth::user()->profil->intitule){
                 case 'administrateur': return redirect('/');
                 case 'professeur': return redirect('/');
-                case 'secrétariat': return redirect('/');
+                case 'secrétaire': return redirect('/');
                 case 'étudiant': return redirect('/');
                 default : return response()->view('Auth/login');
             }
@@ -102,7 +102,7 @@ class UserController extends Controller{
             switch($user->profil->intitule){
                 case 'administrateur': return redirect('/');
                 case 'professeur': return redirect('/');
-                case 'secrétariat': return redirect('/');
+                case 'secrétaire': return redirect('/');
                 case 'étudiant': return redirect('/');
             }
         }else{
@@ -256,6 +256,7 @@ class UserController extends Controller{
         if($user->profil->intitule == "administrateur"){
             //$users = User::all());
             $users = DB::table('user')->paginate(8);
+            //$users->setPath('custom/url');
             return response()->view('auth/show_all_user', ['users' => $users]);
         }
         return "Vous êtes pas administrateur";
