@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SpecialiteRequest;
 use App\Specialite;
+use App\Helpers\Helpers;
 
 class SpecialiteController extends Controller{
 
