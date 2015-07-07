@@ -11,7 +11,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{!! url('admin/groupe') !!}">Formation</a></li>
                 <li><a href="{!! url('admin/parcours') !!}">Parcours</a></li>
                 <li><a href="{!! url('admin/specialite') !!}">Spécialités</a></li>
                 <li><a href="{!! url('admin/ue') !!}">UE</a></li>
