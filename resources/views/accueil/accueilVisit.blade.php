@@ -25,6 +25,13 @@
             </div>
         </div>
         </h4>
+        <div class="panel-heading">
+            <h3>
+                Vous êtes enseignant ou occupez un poste dans l'administration<br>
+                Connectez vous avec les identifiants fournis par l'administrateur du site<br>
+                Vous pourrez alors télécharger les listes d'émargement
+            </h3>
+        </div>
     </div>
 </div>
 

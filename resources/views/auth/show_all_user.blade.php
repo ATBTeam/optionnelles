@@ -15,7 +15,7 @@
 
         <div style="position:fixed; z-index:100000; display:none;" id="filtrage" class="col-sm-offset-3 col-sm-6">
             <div class="panel panel-info">
-                <div class="panel-heading">PAGE DE CREATION D'UN NOUVEL UTILISATEUR
+                <div class="panel-heading">CHOIX DE PROFIL
                     {!! Form::open(['url' => 'admin/user']) !!}
                 </div>
 
