@@ -15,6 +15,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li ><a href="{!! url('compte') !!}">logged as : {{$user=Auth::user()->login}}</a></li>
                 <li><a href="{!! url('logout') !!}">Logout</a></li>
             </ul>
         </div>
