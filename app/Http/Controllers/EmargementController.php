@@ -54,7 +54,7 @@ class EmargementController extends Controller{
         $users = $parcours->users;
 
         $output = fopen('php://memory', 'w');
-        $filename=$parcours->intitule."_".$parcours->specialite->intitile.'.csv';
+        $filename=$parcours->intitule."_".$parcours->specialite->intitule.'.csv';
         // output the column headings
         fputcsv($output, array($parcours->intitule, $parcours->specialite->intitule), ';');
         fputcsv($output, array('Nom', 'Prénom', '@mail', 'actif'),';');

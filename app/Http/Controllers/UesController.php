@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\UeRequest;
 use App\Parcours;
 use App\Parcours_ue;
@@ -16,8 +17,7 @@ class UesController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
+        if (Helpers::isAdmin()) {
             $ues = Ue::all();
 
             return response()->view('ues.show_all_ue', compact('ues'));
@@ -33,19 +33,21 @@ class UesController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
-            $parcours = Parcours::all();
-
-            return response()->view('ues.create', compact('parcours'));
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
         }
+        $parcours = Parcours::all();
 
-        return redirect('/');
+        return response()->view('ues.create', compact('parcours'));
+
         //return view('ues.create');
     }
 
     public function store(UeRequest $request)
     {
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
+        }
         $ue = Ue::create($request->all());
 
         $liste_parcours = Parcours::all();
@@ -54,12 +56,12 @@ class UesController extends Controller
             $statut = $request->get('statut' . $parcours->id);
             $nbmin = $request->get('nbmin' . $parcours->id);
             $nbmax = $request->get('nbmax' . $parcours->id);
-            if ($statut != 2 && !empty($nbmin) && !empty($nbmax)) {
+            if ($statut != 2 && ! empty($nbmin) && ! empty($nbmax)) {
                 $parc_ue = new Parcours_ue();
                 $parc_ue->parcours_id = $parcours->id;
                 $parc_ue->est_optionnel = $statut;
                 $parc_ue->nbmin = $nbmin;
-                $parc_ue->nbmax  = $nbmax;
+                $parc_ue->nbmax = $nbmax;
 
                 array_push($parcours_ue, $parc_ue);
             }
@@ -72,19 +74,21 @@ class UesController extends Controller
 
     public function edit(Ue $ue)
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
-            $parcours = Parcours::all();
-
-            return response()->view('ues.edit', compact('ue', 'parcours'));
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
         }
+        $parcours = Parcours::all();
 
-        return redirect('/');
-        //return view('ues.edit', compact('ue'));
+        return response()->view('ues.edit', compact('ue', 'parcours'));
+
     }
 
     public function update(Ue $ue, UeRequest $request)
     {
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
+        }
+
         $ue->update($request->all());
 
         return redirect('admin/ue');
@@ -92,36 +96,36 @@ class UesController extends Controller
 
     public function post_Delete_Page(Ue $ue)
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
-            return response()->view('ues.suppression', compact('ue'));
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
         }
 
-        return redirect('/');
+        return response()->view('ues.suppression', compact('ue'));
     }
 
     public function post_DeleteConfirm(Ue $ue)
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
-            $text = $ue->intitule . " à été supprimée";
-            $ue->delete();
-
-            return view('confirmation', compact('text'));
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
         }
+        $text = $ue->intitule . " à été supprimée";
+        $ue->delete();
 
-        return redirect('/');
+        return view('confirmation', compact('text'));
     }
 
     public function post_DeleteCancel()
     {
-        $user = Auth::user();
-        if ($user->profil->intitule == "administrateur") {
-            $text = "Supression annulée";
-
-            return view("confirmation", ['text' => $text]);
+        if (! Helpers::isAdmin()) {
+            return redirect('/');
         }
+        $text = "Supression annulée";
 
-        return redirect('/');
+        return view("confirmation", ['text' => $text]);
+
+    }
+
+    public function show_Ue_enseignees($prof_id){ // $prof_id  sera $user_id
+
     }
 }
