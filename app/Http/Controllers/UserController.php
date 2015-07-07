@@ -56,12 +56,12 @@ class UserController extends Controller{
         return null;
     }
 
-    function sendPWDMail($id)
+    function sendPWDMail($user)
     {
-        $user = User::FindOrFail($id);
         $mail = $user->mail;
+        $url = "localhost/optionnelles/public/compte/reinitialyze/".$user->id;
 
-        Mail::send('emails.password', ['url'=> url('ton url de form à ouvrir mr modif mdp')], function($message) use($mail)
+        Mail::send('emails.password', ['url'=> url($url)], function($message) use($mail)
         {
             $message->to($mail)->subject('changement de Mot de passe'); //modifier addresse attention erreur ->to
         });
@@ -151,6 +151,7 @@ class UserController extends Controller{
             $user = Auth::user();
             return response()->view('auth/show_compte', ['user'=> $user]);
         }
+        return "null";
     }
     public function show_compte_post(){
         if (Auth::check())
@@ -219,9 +220,32 @@ class UserController extends Controller{
     }
 
     //Fonction pour reinitialiser mot de passe
-    public function reinitialyze_password_get(){
-        return Specialite::find(1);
-        return "page pour reinitialiser mot de passe";
+    public function reinitialyze_password_get($id){
+        return response()->view('auth/resetMotDePass', ['id'=>$id]);
+    }
+    public function reinitialyze_password_post(Request $request, $id){
+        $this->validate($request, [
+            'mdp1' => 'required|min:8|same:mdp2',
+            'mdp2' => 'required|min:8',
+        ]);
+        $user = User::find($id);
+        $user->mdp = $request->input('mdp2');
+        $user->save;
+        return redirect('login');
+    }
+
+
+    //Fonction pour reset mdp par email
+    public function resetMdpParMail_get(){
+        return response()->view('auth/resetMotDePassParMail');
+    }
+    public function resetMdpParMail_post(Request $request){
+        $this->validate($request, [
+            'mail' => 'required|exists:user,mail',
+        ]);
+        $user = User::where('mail', '=', $request->input('mail'))->get()->first();
+        sendPWDMail($user);
+        return "Vérifiez votre email pour réinitialiser votre compte !";
     }
 
 
