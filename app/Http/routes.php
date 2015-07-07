@@ -36,6 +36,7 @@ Route::get('admin/compte/reinitialyze‏','UserController@reinitialyze‏_passwo
 Route::post('admin/compte/reinitialyze‏','UserController@reinitialyze‏_password_post');
 //Gérer des utilisateurs => Done
 Route::get('admin/user',['middleware' => 'auth', 'uses' => 'UserController@show_all_user']);
+Route::post('admin/user',['middleware' => 'auth', 'uses' => 'UserController@show_all_user_post']);
 Route::get('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_get']);
 Route::post('admin/user/add',['middleware' => 'auth', 'uses' => 'UserController@add_user_post']);
 Route::get('admin/user/delete/{id}',['middleware' => 'auth', 'uses' => 'UserController@delete_user']);
